@@ -1,3 +1,5 @@
+require './app.rb'
+
 def list_options
     "Welcome to my catalog of things
     1 - List of all books
@@ -12,8 +14,40 @@ def list_options
     10 - Exit"
 end
 
+def option(option, app)
+  case option
+  when 1
+    app.list_books
+  when 2
+    app.list_music_albums
+  when 3
+    app.list_games
+  when 4
+    app.list_generes
+  when 5
+    app.list_labels
+  when 6
+    app.list_authors
+  when 7
+    app.add_book
+  when 8
+    app.add_music_album
+  when 9
+    app.add_game
+  when 10
+    exit
+  else
+    puts 'Invalid option, please type correct number!'
+  end
+end
+  
+
 def main
-    puts list_options
+    loop do
+        puts list_options
+        option = gets.chomp.to_i
+        option(option, app)
+    end
 end
 
 main
