@@ -2,7 +2,7 @@ require 'securerandom'
 require 'date'
 
 class Item
-  attr_accessor :genre, :author, :source, :label, :publish_date
+  attr_accessor :genre, :author, :source, :label, :publish_date, :archived
 
   def initialize(publish_date: '', genre: '', label: '', source: '', author: '')
     @publish_date = publish_date
@@ -18,15 +18,17 @@ class Item
   end
 
   def can_be_archived?
-    last_decade = Date.today - (10 * 365)
-    @published_date < last_decade
+    last_decade = Date.today.prev_year(10)
+    Date.parse(@publish_date) < last_decade
+  end
+
+  def move_to_archive
+    return unless can_be_archived?
+
+    @archived = true
   end
 
   private
 
-  attr_reader :id, :archived
+  attr_reader :id
 end
-
-
-ts = Item.new(publish_date: '2018-01-01')
-puts ts.id
