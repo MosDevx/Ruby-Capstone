@@ -11,3 +11,9 @@ def list_options
     9 - Add a game
     10 - Exit"
 end
+
+def main
+    puts list_options
+end
+
+main
