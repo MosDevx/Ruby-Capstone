@@ -1,7 +1,7 @@
-require './app.rb'
+require './app'
 
 def list_options
-    "Welcome to my catalog of things
+  "Welcome to my catalog of things
     1 - List of all books
     2 - List of all music albums
     3 - List of games
@@ -40,14 +40,13 @@ def option(option, app)
     puts 'Invalid option, please type correct number!'
   end
 end
-  
 
 def main
-    loop do
-        puts list_options
-        option = gets.chomp.to_i
-        option(option, app)
-    end
+  loop do
+    puts list_options
+    option = gets.chomp.to_i
+    option(option, app)
+  end
 end
 
 main
