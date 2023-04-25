@@ -9,4 +9,11 @@ class Book < Item
 		super(publish_date: publish_date, genre: genre, label: label, source: source, author: author)
 	end
 
+	def can_be_archived?
+		super() || @cover_state == 'bad'
+	end
 end
+
+bk = Book.new(publish_date: '2020-10-10', genre: 'Horror', label: 'The Shining', source: 'Library', author: 'Stephen King', publisher: 'Penguin', cover_state: 'bad')
+
+puts bk.can_be_archived?
