@@ -1,0 +1,1 @@
+require_relative '../Classes/music_album'
