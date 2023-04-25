@@ -1,12 +1,12 @@
 require 'securerandom'
 
 class Author
-  attr_accessor :first_name, :last_name, :id, :items
+  attr_accessor :first_name, :last_name, :items, :id
 
   def initialize(first_name: '', last_name: '')
     @first_name = first_name
     @last_name = last_name
-    generate_id
+    @id = generate_id
     @items = []
   end
 
@@ -20,5 +20,6 @@ class Author
   end
 
   private
-  attr_reader :id, :item
+
+  attr_reader :item
 end
