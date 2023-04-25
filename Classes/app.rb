@@ -33,12 +33,13 @@ class App
         @albums << MusicAlbum.new(on_spotify, date, title)
         @genres << Genre.new(genre_name)
     end
-    
-    # def list_music_albums(album)
-    #     if @albums.empty?
-    #         puts 'Please a music album'
-    #     else 
-    #         @albums.each do |album|
-    #             puts "Title #{album.name}"
+
+    def list_music_albums(album)
+        if @albums.empty?
+            puts 'Please a music album'
+        else 
+            @albums.each { |album| puts "Title: \"#{album.name}\", Publish_date: #{album.publish_date}, Is on spotify?: #{album.on_spotify}" }
+        end
+    end
 
 end
