@@ -14,7 +14,3 @@ class Book < Item
   end
 end
 
-bk = Book.new(publisher: 'OReilly', cover_state: 'good',
-              item_init: { publish_date: '2019-01-01', genre: 'IT', label: 'Ruby',
-                           source: 'Internet', author: 'John Doe' })
-puts bk.publish_date
