@@ -2,7 +2,7 @@ require_relative 'spec_helper'
 
 describe 'MusicAlbum' do
     before(:each) do
-        @album = MusicAlbum.new(on_spotify: true, publish_date: '2023-04-25')
+        @album = MusicAlbum.new(on_spotify: true, publish_date: '2023-04-25', name: 'Lover')
     end
 
     context 'testing MusicAlbum class' do
