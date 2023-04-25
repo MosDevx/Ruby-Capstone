@@ -34,7 +34,7 @@ class App
         @genres << Genre.new(genre_name)
     end
 
-    def list_music_albums(album)
+    def list_music_albums
         if @albums.empty?
             puts 'Please a music album'
         else 
@@ -42,4 +42,11 @@ class App
         end
     end
 
+    def list_genres
+        if @genres.empty?
+            puts 'Please a music album'
+        else 
+            @genres.each { |genre| puts "Genre: \"#{genre.name}\"" }
+        end
+    end
 end
