@@ -2,17 +2,16 @@ require './spec/spec_helper'
 
 describe Game do
   let(:game) do
-    Game.new(last_played_at: '2012-01-01', genre: 'RPG', label: 'Modern Warfare', source: 'Steam',
-             publish_date: '2005-02-02')
+    Game.new(name: 'Modern Warfare', last_played_at: '2012-01-01', multiplayer: true, publish_date: '2005-02-02')
   end
   let(:author) { Author.new(first_name: 'Captain', last_name: 'Soap') }
 
   describe '#initialize' do
-    it 'sets the last_played_at, genre, label, source' do
+    it 'sets the last_played_at, name, multiplayer, publish_date' do
       expect(game.last_played_at).to eq('2012-01-01')
-      expect(game.genre).to eq('RPG')
-      expect(game.label).to eq('Modern Warfare')
-      expect(game.source).to eq('Steam')
+      expect(game.name).to eq('Modern Warfare')
+      expect(game.multiplayer).to eq(true)
+      expect(game.publish_date).to eq('2005-02-02')
     end
   end
 

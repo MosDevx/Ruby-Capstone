@@ -1,10 +1,9 @@
 require './spec/spec_helper'
 
-describe Game do
+describe Author do
   let(:author) { Author.new(first_name: 'Captain', last_name: 'Soap') }
   let(:game) do
-    Game.new(last_played_at: '2012-01-01', genre: 'RPG', label: 'Modern Warfare', source: 'Steam',
-             publish_date: '2005-02-02')
+    Game.new(name: 'Modern Warfare', last_played_at: '2012-01-01', multiplayer: true, publish_date: '2005-02-02')
   end
 
   describe '#initialize' do
