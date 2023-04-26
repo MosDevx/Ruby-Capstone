@@ -1,7 +1,6 @@
 require './Classes/item'
 
 class Game < Item
-  attr_reader :id
   attr_accessor :name, :multiplayer, :last_played_at
 
   def initialize(name:, last_played_at:, multiplayer:, **args)
