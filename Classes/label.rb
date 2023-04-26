@@ -16,15 +16,19 @@ class Label
   end
 
   def add_item(item)
-    item.label = self
-    @items << item
+    if item.label.instance_of?(Label) && item.label != self
+      puts '!! Item already has a different label !!'
+    else
+      item.label = self
+      @items << item
+    end
   end
 
-  private
-
+  # private
   attr_accessor :id, :items
 
   def generate_id
     @id = SecureRandom.uuid.delete('-')[0, 8]
   end
 end
+
