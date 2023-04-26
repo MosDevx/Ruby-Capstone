@@ -144,8 +144,6 @@ class App
     @genres = File.exist?('./data/genre.json') ? read_file('./data/genre.json') : []
     @authors = File.exist?('./data/authors.json') ? read_file('./data/authors.json') : []
     @games = File.exist?('./data/games.json') ? read_file('./data/games.json') : []
-    puts @authors
-    puts @authors.class
   end
 
   def save_data
