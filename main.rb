@@ -23,7 +23,7 @@ def option(option, app)
   when 3
     app.list_games
   when 4
-    app.list_generes
+    app.list_genres
   when 5
     app.list_labels
   when 6
