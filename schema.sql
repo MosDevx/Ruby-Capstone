@@ -1,3 +1,23 @@
+CREATE TABLE games (
+    id INT GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR(100),
+    last_played_at DATE NOT NULL,
+    multiplayer BOOLEAN NOT NULL,
+    publish_date DATE,
+    source_id INT REFERENCES sources(id),
+    genre_id INT REFERENCES genres(id),
+    author_id INT REFERENCES authors(id),
+    label_id INT REFERENCES labels(id),
+    PRIMARY KEY (id),
+);
+
+CREATE TABLE authors (
+    id INT GENERATED ALWAYS AS IDENTITY,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    PRIMARY KEY (id),
+);
+
 CREATE TABLE music_album (
     id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name VARCHAR(250),
