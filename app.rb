@@ -9,15 +9,24 @@ class App
   end
 
   def list_games
-    @games.each_with_index do |game, index|
-      puts "#{index}) Name: #{game.name} -" \
-           "Author: #{game.author.first_name} #{game.author.last_name} - Last played at: #{game.last_played_at}"
+    if @games.empty?
+      puts 'No games in the library'
+    else
+      @games.each_with_index do |game, index|
+        puts "#{index}) Name: #{game.name} - Mutliplayer: #{game.multiplayer}\n"\
+             "Last played at: #{game.last_played_at}\n"\
+             "Publish date: #{game.publish_date}"
+      end
     end
   end
 
   def list_authors
-    @authors.each_with_index do |author, index|
-      puts "#{index}) Name: #{author.first_name} #{author.last_name}"
+    if @authors.empty?
+      puts 'No authors in the library'
+    else
+      @authors.each_with_index do |author, index|
+        puts "#{index}) Name: #{author.first_name} #{author.last_name}"
+      end
     end
   end
 
