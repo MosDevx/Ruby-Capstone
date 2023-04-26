@@ -35,6 +35,7 @@ def option(option, app)
   when 9
     app.add_game
   when 10
+    app.save_data
     exit
   else
     puts 'Invalid option, please type correct number!'
@@ -42,6 +43,9 @@ def option(option, app)
 end
 
 def main
+  app = App.new
+  app.load_data
+  
   loop do
     puts list_options
     option = gets.chomp.to_i
