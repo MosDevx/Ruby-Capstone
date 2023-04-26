@@ -59,8 +59,7 @@ class App
     if @games.empty?
       puts 'No games in the library'
     else
-      all_games = @games.map(&:hashify)
-      all_games.each_with_index do |game, index|
+      @games.each_with_index do |game, index|
         puts "#{index}) Name: #{game['name']} - Mutliplayer: #{game['multiplayer']}\n" \
              "Last played at: #{game['last_played_at']}\n" \
              "Publish date: #{game['publish_date']}"
@@ -72,8 +71,7 @@ class App
     if @authors.empty?
       puts 'No authors in the library'
     else
-      all_authors = @authors.map(&:hashify)
-      all_authors.each_with_index do |author, index|
+      @authors.each_with_index do |author, index|
         puts "#{index}) Name: #{author['first_name']} #{author['last_name']}"
       end
     end
@@ -93,11 +91,11 @@ class App
     last_name = gets.chomp
     game = Game.new(name: name, last_played_at: last_played_at, publish_date: publish_date,
                     multiplayer: multiplayer)
-    @games << game
+    @games << game.hashify
     author = resolve_author(first_name, last_name)
     unless author.nil?
       author.add_item(game)
-      @authors << author unless @authors.include?(author)
+      @authors << author.hashify unless @authors.include?(author.hashify || author)
     end
     puts 'Game added successfully'
   end
@@ -105,7 +103,7 @@ class App
   def resolve_author(first_name, last_name)
     return nil if first_name.empty? || last_name.empty?
 
-    author = @authors.find { |a| a.first_name == first_name && a.last_name == last_name }
+    author = @authors.find { |a| a['first_name'] == first_name && a['last_name'] == last_name }
     author || Author.new(first_name: first_name, last_name: last_name)
   end
 
@@ -133,12 +131,14 @@ class App
     @genres = File.exist?('./data/genre.json') ? read_file('./data/genre.json') : []
     @authors = File.exist?('./data/authors.json') ? read_file('./data/authors.json') : []
     @games = File.exist?('./data/games.json') ? read_file('./data/games.json') : []
+    puts @authors
+    puts @authors.class
   end
 
   def save_data
     File.write('./data/albums.json', JSON.pretty_generate(@albums))
     File.write('./data/genre.json', JSON.pretty_generate(@genres))
-    File.write('./data/authors.json', JSON.pretty_generate(@authors.map(&:hashify)))
-    File.write('./data/games.json', JSON.pretty_generate(@games.map(&:hashify)))
+    File.write('./data/authors.json', JSON.pretty_generate(@authors))
+    File.write('./data/games.json', JSON.pretty_generate(@games))
   end
 end
