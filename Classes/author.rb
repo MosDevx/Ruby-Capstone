@@ -25,8 +25,4 @@ class Author
       raise 'Item already has an author'
     end
   end
-
-  private
-
-  attr_reader :item
 end
