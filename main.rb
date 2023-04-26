@@ -1,4 +1,4 @@
-require './app'
+require '.Classes/app'
 
 def list_options
   "Welcome to my catalog of things
