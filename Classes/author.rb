@@ -25,4 +25,11 @@ class Author
       raise 'Item already has an author'
     end
   end
+
+  def to_h
+    {
+      'first_name' => @first_name,
+      'last_name' => @last_name
+    }
+  end
 end

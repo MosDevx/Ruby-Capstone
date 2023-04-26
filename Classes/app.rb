@@ -54,10 +54,11 @@ class App
     if @games.empty?
       puts 'No games in the library'
     else
-      @games.each_with_index do |game, index|
-        puts "#{index}) Name: #{game.name} - Mutliplayer: #{game.multiplayer}\n" \
-             "Last played at: #{game.last_played_at}\n" \
-             "Publish date: #{game.publish_date}"
+      all_games = @games.map(&:to_h)
+      all_games.each_with_index do |game, index|
+        puts "#{index}) Name: #{game['name']} - Mutliplayer: #{game['multiplayer']}\n" \
+             "Last played at: #{game['last_played_at']}\n" \
+             "Publish date: #{game['publish_date']}"
       end
     end
   end
@@ -66,8 +67,9 @@ class App
     if @authors.empty?
       puts 'No authors in the library'
     else
-      @authors.each_with_index do |author, index|
-        puts "#{index}) Name: #{author.first_name} #{author.last_name}"
+      all_authors = @authors.map(&:to_h)
+      all_authors.each_with_index do |author, index|
+        puts "#{index}) Name: #{author['first_name']} #{author['last_name']}"
       end
     end
   end
@@ -131,7 +133,7 @@ class App
   def save_data
     File.write('./data/albums.json', JSON.pretty_generate(@albums))
     File.write('./data/genre.json', JSON.pretty_generate(@genres))
-    File.write('./data/authors.json', JSON.pretty_generate(@authors))
-    File.write('./data/games.json', JSON.pretty_generate(@games))
+    File.write('./data/authors.json', JSON.pretty_generate(@authors.map(&:to_h)))
+    File.write('./data/games.json', JSON.pretty_generate(@games.map(&:to_h)))
   end
 end
