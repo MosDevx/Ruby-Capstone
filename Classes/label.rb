@@ -19,6 +19,7 @@ class Label
 
 	def add_item(item:item)
 		@items << Item
+		item.label = self
 	end
 
 	private
