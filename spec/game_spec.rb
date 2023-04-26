@@ -17,7 +17,7 @@ describe Game do
 
   describe '#can_be_archived?' do
     it 'returns true if the game was last played more than 2 years ago' do
-      expect(game.can_be_archived?).to eq(true)
+      expect(game.send(:can_be_archived?)).to eq(true)
     end
   end
 

@@ -26,16 +26,7 @@ class App
     name = gets.chomp
     puts 'Last played at(YYYY-MM-DD):'
     last_played_at = gets.chomp
-    puts 'Multiplayer(T/F):'
-    choice1 = gets.chomp.upcase
-    if choice1 == 'T'
-      multiplayer = true
-    elsif choice1 == 'F'
-      multiplayer = false
-    else
-      puts 'Invalid option, please type T or F'
-      return
-    end
+    multiplayer = multi_player?
     puts 'Publish date(YYYY-MM-DD):'
     publish_date = gets.chomp
     puts 'Author(first name):'
@@ -46,8 +37,22 @@ class App
                     multiplayer: multiplayer)
     @games << game
     author = Author.new(first_name: first_name, last_name: last_name)
-    game.author = author
+    author.add_item(game)
     @authors << author
     puts 'Game added successfully'
+  end
+
+  def multi_player?
+    loop do
+      puts 'Multiplayer(T/F):'
+      choice1 = gets.chomp.upcase
+      if choice1 == 'T'
+        return true
+      elsif choice1 == 'F'
+        return false
+      else
+        puts 'Invalid option, please type T or F'
+      end
+    end
   end
 end
