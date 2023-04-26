@@ -9,6 +9,7 @@ class Book < Item
     super(**item_init)
   end
 
+  private
   def can_be_archived?
     super() || @cover_state == 'bad'
   end
