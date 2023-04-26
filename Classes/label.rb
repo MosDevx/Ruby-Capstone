@@ -31,4 +31,3 @@ class Label
     @id = SecureRandom.uuid.delete('-')[0, 8]
   end
 end
-
