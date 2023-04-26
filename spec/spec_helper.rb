@@ -1,2 +1,2 @@
-require_relative '../Classes/music_album'
-require_relative '../Classes/genre'
+require './Classes/music_album'
+require './Classes/genre'
