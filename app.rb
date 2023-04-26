@@ -45,10 +45,19 @@ class App
     game = Game.new(name: name, last_played_at: last_played_at, publish_date: publish_date,
                     multiplayer: multiplayer)
     @games << game
-    author = Author.new(first_name: first_name, last_name: last_name)
-    author.add_item(game)
-    @authors << author
+    author = resolve_author(first_name, last_name)
+    unless author.nil?
+      author.add_item(game)
+      @authors << author unless @authors.include?(author)
+    end
     puts 'Game added successfully'
+  end
+
+  def resolve_author(first_name, last_name)
+    return nil if first_name.empty? || last_name.empty?
+
+    author = @authors.find { |a| a.first_name == first_name && a.last_name == last_name }
+    author || Author.new(first_name: first_name, last_name: last_name)
   end
 
   def multi_player?
