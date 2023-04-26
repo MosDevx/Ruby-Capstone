@@ -17,12 +17,12 @@ class Author
 
   def add_item(item)
     if item.author == self
-      return
+      nil
     elsif item.author.nil?
       item.author = self
       @items << item unless @items.include?(item)
     else
-      raise 'Item already has an author' unless item.author == nil || item.author == self
+      raise 'Item already has an author' unless item.author.nil? || item.author == self
     end
   end
 
