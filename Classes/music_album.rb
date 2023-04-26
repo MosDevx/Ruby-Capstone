@@ -1,7 +1,7 @@
 require_relative 'item'
 
 class MusicAlbum < Item
-  attr_accessor :on_spotify
+  attr_accessor :on_spotify, :name
 
   def initialize(name:, on_spotify: false, **args)
     super(**args)
