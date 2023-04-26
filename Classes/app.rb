@@ -133,4 +133,23 @@ class App
       end
     end
   end
+
+  def read_file(file)
+    file_data = File.read(file)
+    JSON.parse(file_data)
+  end
+
+  def load_data
+    @albums = File.exist?('./data/albums.json') ? read_file('./data/albums.json') : []
+    @genres = File.exist?('./data/genre.json') ? read_file('./data/genre.json') : []
+    @authors = File.exist?('./data/authors.json') ? read_file('./data/authors.json') : []
+    @games = File.exist?('./data/games.json') ? read_file('./data/games.json') : []
+  end
+
+  def save_data
+    File.write('./data/albums.json', JSON.pretty_generate(@albums))
+    File.write('./data/genre.json', JSON.pretty_generate(@genres))
+    File.write('./data/authors.json', JSON.pretty_generate(@authors))
+    File.write('./data/games.json', JSON.pretty_generate(@games))
+  end
 end
