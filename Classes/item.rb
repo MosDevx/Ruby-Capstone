@@ -17,11 +17,6 @@ class Item
     @id = SecureRandom.uuid.delete('-')[0, 8]
   end
 
-  def can_be_archived?
-    last_decade = Date.today.prev_year(10)
-    Date.parse(@publish_date) < last_decade
-  end
-
   def move_to_archive
     return unless can_be_archived?
 
@@ -31,4 +26,9 @@ class Item
   private
 
   attr_reader :id
+
+  def can_be_archived?
+    last_decade = Date.today.prev_year(10)
+    Date.parse(@publish_date) < last_decade
+  end
 end
