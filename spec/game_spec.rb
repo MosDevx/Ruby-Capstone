@@ -4,7 +4,7 @@ describe Game do
   let(:game) do
     Game.new(name: 'Modern Warfare', last_played_at: '2012-01-01', multiplayer: true, publish_date: '2005-02-02')
   end
-  let(:author) { Author.new(first_name: 'Captain', last_name: 'Soap') }
+  let(:author) { Author.new(first_name: 'Soap', last_name: 'McTavish') }
 
   describe '#initialize' do
     it 'sets the last_played_at, name, multiplayer, publish_date' do
