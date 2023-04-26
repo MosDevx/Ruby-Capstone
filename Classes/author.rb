@@ -26,7 +26,7 @@ class Author
     end
   end
 
-  def to_h
+  def hashify
     {
       'first_name' => @first_name,
       'last_name' => @last_name

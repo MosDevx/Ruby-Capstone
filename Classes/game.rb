@@ -16,7 +16,7 @@ class Game < Item
     author.items << self unless author.items.include?(self)
   end
 
-  def to_h
+  def hashify
     {
       'name' => @name,
       'multiplayer' => @multiplayer,
