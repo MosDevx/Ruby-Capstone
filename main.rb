@@ -45,7 +45,7 @@ end
 def main
   app = App.new
   app.load_data
-  
+
   loop do
     puts list_options
     option = gets.chomp.to_i
