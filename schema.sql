@@ -4,10 +4,10 @@ CREATE TABLE games (
     last_played_at DATE NOT NULL,
     multiplayer BOOLEAN NOT NULL,
     publish_date DATE,
-    source VARCHAR(100) REFERENCES sources(id),
-    genre VARCHAR(100) REFERENCES genres(id),
+    source_id VARCHAR(100) REFERENCES sources(id),
+    genre_id VARCHAR(100) REFERENCES genres(id),
     author_id INT REFERENCES authors(id),
-    label VARCHAR(100) REFERENCES labels(id),
+    label_id VARCHAR(100) REFERENCES labels(id),
     PRIMARY KEY (id),
 );
 
