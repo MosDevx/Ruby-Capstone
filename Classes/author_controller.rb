@@ -47,9 +47,3 @@ class AuthorController
     end
   end
 end
-
-author_controller = AuthorController.new
-author_controller.create_author
-author_controller.list_authors
-author_controller.create_author
-author_controller.list_authors
