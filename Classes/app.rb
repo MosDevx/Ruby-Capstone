@@ -152,9 +152,10 @@ class App
   end
 
   def load_data
-    @albums = File.exist?('data/albums.json') ? read_file('data/albums.json') : []
-    @genres = File.exist?('data/genre.json') ? read_file('data/genre.json') : []
-    load_games
-    load_authors
+    @albums = File.exist?('./data/albums.json') ? read_file('./data/albums.json') : []
+    @genres = File.exist?('./data/genre.json') ? read_file('./data/genre.json') : []
+    @games = load_games
+    @authors = load_authors
+
   end
 end
