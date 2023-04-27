@@ -9,7 +9,7 @@ def load_authors
         author = Author.new(first_name: author_data['first_name'], last_name: author_data['last_name'])
         author_data['items']&.each do |item_data|
           item_class = item_data['class']
-          item = classer(item_class, item_data)
+          item = create_item(item_class, item_data)
           author.add_item(item)
         end
         @authors << author
@@ -20,7 +20,7 @@ def load_authors
   end
 end
 
-def classer(item_class, item_data)
+def create_item(item_class, item_data)
   case item_class
   when 'Game'
     Game.new(name: item_data['name'],
