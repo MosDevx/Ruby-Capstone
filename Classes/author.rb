@@ -69,9 +69,11 @@ class Author
 end
 
 book = Book.new(publisher: 'Penguin')
+book2 = Book.new(publisher: 'Pen')
 author = Author.new(first_name: 'John', last_name: 'Doe')
 
 author.add_item(book)
+author.add_item(book2)
 
 my_json = author.to_json_custom
 puts my_json
