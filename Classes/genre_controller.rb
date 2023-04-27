@@ -5,6 +5,16 @@ class GenreController
   include InputValidator
   def initialize
     @genres = []
+    populate_genre_from_file
+  end
+
+  def populate_genre_from_file
+    data = HandleData.read('genres')
+    data.each do |genre_string|
+      genre = Genre.new
+      genre.from_json(genre_string)
+      @genres.push(genre)
+    end
   end
 
   def create_genre
@@ -41,5 +51,10 @@ class GenreController
         puts "Genre: #{genre.name}"
       end
     end
+  end
+
+  def save_to_file
+    prepared_data = @genres.map(&:to_json_custom)
+    HandleData.write('genres', prepared_data)
   end
 end

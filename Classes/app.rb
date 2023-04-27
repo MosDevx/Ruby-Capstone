@@ -15,7 +15,9 @@ class App
     @book_controller = BookController.new
   end
 
-  def list_books; end
+  def list_books; 
+    @book_controller.list_books
+  end
 
   def add_book
     author = @author_controller.create_author
