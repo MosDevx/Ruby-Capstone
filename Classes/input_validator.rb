@@ -35,6 +35,14 @@ module InputValidator
       retry
     end
     parseable = Date.strptime(date, '%Y-%m-%d')
+
+    until parseable < Date.today
+      puts 'Please enter a date in the past!!'
+      print place_holder
+      date = gets.chomp
+      parseable = Date.strptime(date, '%Y-%m-%d')
+   
+    end
     parseable
   end
 
