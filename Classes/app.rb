@@ -86,7 +86,7 @@ class App
       puts 'No authors in the library'
     else
       @authors.each_with_index do |author, index|
-        puts "#{index}) Name: #{author.first_name} #{author.last_name}\n"\
+        puts "#{index}) Name: #{author.first_name} #{author.last_name}\n" \
              "Items: #{author.items.map(&:name).join(', ')}"
       end
     end
