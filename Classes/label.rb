@@ -1,5 +1,6 @@
 require 'securerandom'
 require_relative 'book'
+require_relative 'item'
 
 class Label
   attr_accessor :title, :color
@@ -12,15 +13,22 @@ class Label
   end
 
   def to_s
-    "Title:#{@title} Color:#{@color}"
+    "#{@title}#{@color}".downcase
   end
 
   def add_item(item)
-    if item.label.instance_of?(Label) && item.label != self
+    if !item.is_a?(Item)
+      puts '!! Item is not an instance of Item !!'
+
+    elsif item.label == self
+      puts '!! Item already has this label !!'
+
+    elsif item.label.instance_of?(Label) && item.label != self
       puts '!! Item already has a different label !!'
     else
       item.label = self
-      @items << item
+      @items << item unless @items.include?(item)
+      puts 'Item Added'
     end
   end
 
