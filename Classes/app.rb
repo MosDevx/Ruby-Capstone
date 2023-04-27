@@ -3,21 +3,18 @@ require_relative './genre'
 require 'json'
 
 class App
-  attr_accessor :albums, :genres,
+  attr_accessor :albums, :genres
 
   def initialize
     @albums = []
     @genres = []
     @label_controller = LabelController.new
     @author_controller = AuthorController.new
-   
-  end
-  
-  def list_books
   end
 
-  def add_book
-  end
+  def list_books; end
+
+  def add_book; end
 
   def add_music_album
     puts 'Album title: '
