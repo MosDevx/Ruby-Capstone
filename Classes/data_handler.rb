@@ -27,6 +27,8 @@ def create_item(item_class, item_data)
   when 'MusicAlbum'
     MusicAlbum.new(name: item_data['name'], on_spotify: item_data['on_spotify'],
                    publish_date: item_data['publish_date'])
+  when 'Book'
+    # Book.new(name: item_data['name'], author: item_data['author'],
   end
 end
 
