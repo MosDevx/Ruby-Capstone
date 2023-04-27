@@ -66,6 +66,7 @@ class Author
       book
     end
   end
+
     games = nil unless games.map do |gm|
       game = Game.new
       game.from_json(gm)
@@ -99,16 +100,16 @@ class Author
   end
 end
 
-# book = Book.new(publisher: 'Penguin')
-# author = Author.new(first_name: 'John', last_name: 'Doe')
+book = Book.new(publisher: 'Penguin')
+author = Author.new(first_name: 'John', last_name: 'Doe')
 
-# author.add_item(book)
+author.add_item(book)
 
-# my_json = author.to_json_custom
-
-# auth2 = Author.create_from_json(my_json)
-# puts auth2.items.first.publisher
-# puts author.id 
-# puts auth2.id
+my_json = author.to_json_custom
+puts{my_json}
+auth2 = Author.create_from_json(my_json)
+puts auth2.items.first.publisher
+puts author.id 
+puts auth2.id
 
 
