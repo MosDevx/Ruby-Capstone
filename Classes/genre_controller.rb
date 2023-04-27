@@ -18,7 +18,7 @@ class GenreController
 			genre
 		else
 			puts 'Genre already exists!'
-			existing_genre = @genres.find {	|gen| gen.to_s == genre_name }
+			existing_genre = @genres.find {	|gen| gen.to_s == genre_name.downcase }
 			puts 'Returning existing genre...'
 			existing_genre
 		end
