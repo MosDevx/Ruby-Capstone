@@ -30,25 +30,21 @@ class Item
       hash[var] = instance_variable_get(var)
     end
     # puts hash.class
-   hash.to_json
+    hash.to_json
   end
 
   def from_json(string)
-
     hash = JSON.parse(string).each do |var, val|
       instance_variable_set var, val
     end
-    
   end
 
   private
-  
+
   attr_reader :id
 
   def can_be_archived?
     last_decade = Date.today.prev_year(10)
     Date.parse(@publish_date) < last_decade
   end
-
-
 end

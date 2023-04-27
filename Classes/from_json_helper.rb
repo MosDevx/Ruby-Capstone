@@ -1,17 +1,12 @@
 module FromJsonHelper
-
-  def gather_items(books: [], games: [], music_albums: [])   
-
-  
+  def gather_items(books: [], games: [], music_albums: [])
     new_books = books.map do |bk|
       book = Book.new
       book.from_json(bk)
       book
     end
 
-
-
-     games.map do |gm|
+    games.map do |gm|
       game = Game.new
       game.from_json(gm)
       game
@@ -25,7 +20,7 @@ module FromJsonHelper
     new_books + games + music_albums
   end
 
-	def break_up_items(items)
+  def break_up_items(items)
     books = []
     games = []
     music_albums = []

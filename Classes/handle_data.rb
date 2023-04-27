@@ -1,4 +1,3 @@
-
 class HandleData
   def self.read(file_name)
     file_name = "data/#{file_name}.json"
@@ -17,8 +16,7 @@ class HandleData
     file_name = "data/#{file_name}.json"
     json_string = JSON.dump(data_array)
     File.write(file_name, json_string)
-  rescue StandardError 
-		
+  rescue StandardError
     puts 'Unable to save to file'
   end
 end

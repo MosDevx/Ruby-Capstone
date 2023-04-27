@@ -28,21 +28,20 @@ module InputValidator
   def fetch_valid_date(place_holder)
     begin
       date = gets.chomp
-      format_ok = date.match(/\A\d{4}-(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01])\z/)
-      parseable = Date.strptime(date, '%Y-%m-%d')
+      date.match(/\A\d{4}-(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01])\z/)
     rescue StandardError
       puts 'Please enter a valid date!!'
       print place_holder
       retry
     end
-    puts date
+    parseable = Date.strptime(date, '%Y-%m-%d')
+    parseable
   end
-
 
   def fetch_valid_cover_state(place_holder)
     input = gets.chomp
     lower_input = input.downcase
-    until %w[good bad ok].include?(lower_input)
+    until %w[good bad ok g b o].include?(lower_input)
       puts 'Please enter good, bad, or ok!!'
       print place_holder
       input = gets.chomp
@@ -51,4 +50,3 @@ module InputValidator
     input
   end
 end
-

@@ -13,7 +13,6 @@ class Author
     @last_name = last_name.capitalize
     generate_id
     @items = []
-
   end
 
   def generate_id
@@ -23,8 +22,6 @@ class Author
   def to_s
     "#{@first_name} #{@last_name}"
   end
-
-
 
   def add_item(item)
     if item.author == self
@@ -50,7 +47,6 @@ class Author
   end
 
   def from_json(json_string)
-    
     hash = JSON.parse(json_string)
     # puts hash
     first_name = hash['first_name']
@@ -62,12 +58,7 @@ class Author
     @last_name = last_name
     @id = id
     @items = items
-
   end
-
-
-
-
 end
 
 # book = Book.new(publisher: 'Penguin')
@@ -82,7 +73,5 @@ end
 # auth2 = Author.new
 # auth2.from_json(my_json)
 # puts auth2.items.last.publisher
-# puts author.id 
+# puts author.id
 # puts auth2.id
-
-

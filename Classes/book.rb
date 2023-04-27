@@ -3,7 +3,7 @@ require 'json'
 class Book < Item
   attr_accessor :publisher, :cover_state, :title
 
-  def initialize(title:'' ,publisher: '', cover_state: '', item_init: {})
+  def initialize(title: '', publisher: '', cover_state: '', item_init: {})
     @publisher = publisher
     @cover_state = cover_state
     @title = title
