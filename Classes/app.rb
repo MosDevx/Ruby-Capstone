@@ -4,6 +4,7 @@ require 'json'
 require_relative './item'
 require_relative './game'
 require_relative './author'
+require_relative './data_handler'
 
 class App
   attr_accessor :albums, :genres, :games, :authors
@@ -72,7 +73,8 @@ class App
       puts 'No authors in the library'
     else
       @authors.each_with_index do |author, index|
-        puts "#{index}) Name: #{author['first_name']} #{author['last_name']}"
+        puts "#{index}) Name: #{author.first_name} #{author.last_name}\n"\
+              "Items: #{author.items.map(&:name).join(', ')}"
       end
     end
   end
@@ -95,7 +97,7 @@ class App
     author = resolve_author(first_name, last_name)
     unless author.nil?
       author.add_item(game)
-      @authors << author.hashify unless @authors.include?(author.hashify || author)
+      @authors << author unless @authors.include?(author)
     end
     puts 'Game added successfully'
   end
@@ -103,7 +105,7 @@ class App
   def resolve_author(first_name, last_name)
     return nil if first_name.empty? || last_name.empty?
 
-    author = @authors.find { |a| a['first_name'] == first_name && a['last_name'] == last_name }
+    author = @authors.find { |a| a.first_name == first_name && a.last_name == last_name }
     author || Author.new(first_name: first_name, last_name: last_name)
   end
 
@@ -121,6 +123,13 @@ class App
     end
   end
 
+  def save_data
+    File.write('./data/albums.json', JSON.pretty_generate(@albums))
+    File.write('./data/genre.json', JSON.pretty_generate(@genres))
+    File.write('./data/authors.json', JSON.pretty_generate(@authors.map(&:hashify)))
+    File.write('./data/games.json', JSON.pretty_generate(@games))
+  end
+
   def read_file(file)
     read_file = File.read(file)
     JSON.parse(read_file)
@@ -129,14 +138,7 @@ class App
   def load_data
     @albums = File.exist?('./data/albums.json') ? read_file('./data/albums.json') : []
     @genres = File.exist?('./data/genre.json') ? read_file('./data/genre.json') : []
-    @authors = File.exist?('./data/authors.json') ? read_file('./data/authors.json') : []
     @games = File.exist?('./data/games.json') ? read_file('./data/games.json') : []
-  end
-
-  def save_data
-    File.write('./data/albums.json', JSON.pretty_generate(@albums))
-    File.write('./data/genre.json', JSON.pretty_generate(@genres))
-    File.write('./data/authors.json', JSON.pretty_generate(@authors))
-    File.write('./data/games.json', JSON.pretty_generate(@games))
+    load_authors
   end
 end
