@@ -33,3 +33,20 @@ def classer(item_class, item_data)
                    publish_date: item_data['publish_date'])
   end
 end
+
+def load_games
+  if File.exist?('./data/games.json')
+    games_data = read_file('./data/games.json')
+    @games = []
+    unless games_data.empty?
+      games_data.each do |game_data|
+        game = Game.new(name: game_data['name'], multiplayer: game_data['multiplayer'],
+                        last_played_at: game_data['last_played_at'],
+                        publish_date: game_data['publish_date'])
+        @games << game
+      end
+    end
+  else
+    @games = []
+  end
+end

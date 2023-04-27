@@ -61,9 +61,9 @@ class App
       puts 'No games in the library'
     else
       @games.each_with_index do |game, index|
-        puts "#{index}) Name: #{game['name']} - Mutliplayer: #{game['multiplayer']}\n" \
-             "Last played at: #{game['last_played_at']}\n" \
-             "Publish date: #{game['publish_date']}"
+        puts "#{index}) Name: #{game.name} - Mutliplayer: #{game.multiplayer}\n" \
+             "Last played at: #{game.last_played_at}\n" \
+             "Publish date: #{game.publish_date}"
       end
     end
   end
@@ -74,7 +74,7 @@ class App
     else
       @authors.each_with_index do |author, index|
         puts "#{index}) Name: #{author.first_name} #{author.last_name}\n"\
-              "Items: #{author.items.map(&:name).join(', ')}"
+             "Items: #{author.items.map(&:name).join(', ')}"
       end
     end
   end
@@ -93,7 +93,7 @@ class App
     last_name = gets.chomp
     game = Game.new(name: name, last_played_at: last_played_at, publish_date: publish_date,
                     multiplayer: multiplayer)
-    @games << game.hashify
+    @games << game
     author = resolve_author(first_name, last_name)
     unless author.nil?
       author.add_item(game)
@@ -127,7 +127,7 @@ class App
     File.write('./data/albums.json', JSON.pretty_generate(@albums))
     File.write('./data/genre.json', JSON.pretty_generate(@genres))
     File.write('./data/authors.json', JSON.pretty_generate(@authors.map(&:hashify)))
-    File.write('./data/games.json', JSON.pretty_generate(@games))
+    File.write('./data/games.json', JSON.pretty_generate(@games.map(&:hashify)))
   end
 
   def read_file(file)
@@ -138,7 +138,7 @@ class App
   def load_data
     @albums = File.exist?('./data/albums.json') ? read_file('./data/albums.json') : []
     @genres = File.exist?('./data/genre.json') ? read_file('./data/genre.json') : []
-    @games = File.exist?('./data/games.json') ? read_file('./data/games.json') : []
+    load_games
     load_authors
   end
 end
