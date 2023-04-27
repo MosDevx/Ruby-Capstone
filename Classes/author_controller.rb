@@ -50,5 +50,4 @@ class AuthorController
   end
 end
 
-aut = AuthorController.new
-aut.create_author
+

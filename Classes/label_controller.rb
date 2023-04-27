@@ -1,6 +1,8 @@
 require_relative 'label'
+require_relative 'input_validator'
 
 class LabelController
+  include InputValidator
   attr_accessor :labels
 
   def initialize
@@ -12,7 +14,7 @@ class LabelController
     print 'Title: '
     title = gets.chomp.to_s
     print 'Color: '
-    color = gets.chomp.to_s
+    color = fetch_valid_name('Color: ')
     label = Label.new(title: title, color: color)
     @labels.push(label)
     puts 'New Label created!'

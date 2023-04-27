@@ -1,6 +1,8 @@
 require_relative 'genre'
+require_relative 'input_validator'
 
 class GenreController
+	include InputValidator
   def initialize
     @genres = []
   end
@@ -8,7 +10,7 @@ class GenreController
   def create_genre
     puts 'Please enter the following information: '
     print 'Genre: '
-    genre_name = gets.chomp.to_s
+    genre_name = fetch_valid_name('Genre: ')
 
     if new_genre?(genre_name)
       genre = Genre.new(genre_name)

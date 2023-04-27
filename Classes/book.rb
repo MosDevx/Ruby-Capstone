@@ -15,3 +15,7 @@ class Book < Item
     super() || @cover_state == 'bad'
   end
 end
+
+bk = Book.new(title: 'The Hobbit', author: 'J.R.R. Tolkien', genre: 'Fantasy', label: 'Fantasy', publisher: 'Allen & Unwin', cover_state: 'good')
+
+bk =
