@@ -1,11 +1,12 @@
 require_relative 'item'
 require 'json'
 class Book < Item
-  attr_accessor :publisher, :cover_state
+  attr_accessor :publisher, :cover_state, :title
 
-  def initialize(publisher: '', cover_state: '', item_init: {})
+  def initialize(title:'' ,publisher: '', cover_state: '', item_init: {})
     @publisher = publisher
     @cover_state = cover_state
+    @title = title
     super(**item_init)
   end
 

@@ -21,8 +21,10 @@ class Author
   end
 
   def to_s
-    "#{@first_name}#{@last_name}".downcase
+    "#{@first_name} #{@last_name}"
   end
+
+
 
   def add_item(item)
     if item.author == self
@@ -68,19 +70,19 @@ class Author
 
 end
 
-book = Book.new(publisher: 'Penguin')
-book2 = Book.new(publisher: 'Pen')
-author = Author.new(first_name: 'John', last_name: 'Doe')
+# book = Book.new(publisher: 'Penguin')
+# book2 = Book.new(publisher: 'Pen')
+# author = Author.new(first_name: 'John', last_name: 'Doe')
 
-author.add_item(book)
-author.add_item(book2)
+# author.add_item(book)
+# author.add_item(book2)
 
-my_json = author.to_json_custom
-puts my_json
-auth2 = Author.new
-auth2.from_json(my_json)
-puts auth2.items.first.publisher
-puts author.id 
-puts auth2.id
+# my_json = author.to_json_custom
+# puts my_json
+# auth2 = Author.new
+# auth2.from_json(my_json)
+# puts auth2.items.last.publisher
+# puts author.id 
+# puts auth2.id
 
 

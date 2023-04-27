@@ -16,7 +16,7 @@ class AuthorController
     print 'Last Name: '
     last_name = fetch_valid_name('Last Name: ')
 
-    full_name = (first_name + last_name).downcase
+    full_name = first_name.capitalize + ' ' +last_name.capitalize
 
     if new_author?(full_name)
       author = Author.new(first_name: first_name, last_name: last_name)
@@ -44,8 +44,17 @@ class AuthorController
     else
       puts '<<Authors: >>'
       authors.each do |author|
-        puts "Name: #{author.first_name} #{author.last_name}"
+        # puts "Name: #{author.first_name} #{author.last_name}"
+        puts "Name: #{author.to_s}"
       end
     end
   end
 end
+
+
+ac = AuthorController.new
+ac.create_author
+ac.list_authors
+
+ac.create_author
+ac.list_authors
