@@ -2,7 +2,7 @@ require_relative 'genre'
 require_relative 'input_validator'
 
 class GenreController
-	include InputValidator
+  include InputValidator
   def initialize
     @genres = []
   end

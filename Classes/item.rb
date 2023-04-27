@@ -1,5 +1,6 @@
 require 'securerandom'
 require 'date'
+require 'json'
 
 class Item
   attr_accessor :genre, :author, :source, :label, :publish_date, :archived
@@ -21,6 +22,21 @@ class Item
     return unless can_be_archived?
 
     @archived = true
+  end
+
+  def to_json_custom()
+    hash = {}
+    instance_variables.each do |var|
+      hash[var] = instance_variable_get(var)
+    end
+    # puts hash.class
+    hash.to_json
+  end
+
+  def from_json(string)
+    hash = JSON.parse(string).each do |var, val|
+      instance_variable_set var, val
+    end
   end
 
   private

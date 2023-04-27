@@ -49,5 +49,3 @@ class AuthorController
     end
   end
 end
-
-

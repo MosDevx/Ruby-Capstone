@@ -1,5 +1,5 @@
 require_relative 'item'
-
+require 'json'
 class Book < Item
   attr_accessor :publisher, :cover_state
 
@@ -16,6 +16,4 @@ class Book < Item
   end
 end
 
-bk = Book.new(title: 'The Hobbit', author: 'J.R.R. Tolkien', genre: 'Fantasy', label: 'Fantasy', publisher: 'Allen & Unwin', cover_state: 'good')
-
-bk =
+bk = Book.new(publisher: 'test', cover_state: 'bad', item_init: { author: 'test', genre: 'test', label: 'test' })

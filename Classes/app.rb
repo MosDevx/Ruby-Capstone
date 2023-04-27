@@ -11,15 +11,15 @@ class App
     @label_controller = LabelController.new
     @author_controller = AuthorController.new
     @genre_controller = GenreController.new
-    
+
     @book_controller = BookController.new
   end
 
   def list_books; end
 
-  def add_book; 
+  def add_book
     author = @author_controller.create_author
-    genre = @genre_controller.create_genre  
+    genre = @genre_controller.create_genre
     label = @label_controller.create_label
 
     @book_controller.create_book(author, genre, label)
