@@ -35,7 +35,7 @@ class BookController
                     item_init: { author: author, genre: genre, label: label, publish_date: publish_date })
 
     @books.push(book)
-    puts 'New Book created!'
+    puts '+++ New Book created! +++'
   end
 
   def list_books
