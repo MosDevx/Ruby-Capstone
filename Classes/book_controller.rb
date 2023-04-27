@@ -1,17 +1,11 @@
 require_relative 'book'
 
 class BookController
+  attr_accessor :books
 
-	attr_accessor :books
+  def initialize
+    @books = []
+  end
 
-	def initialize
-		@books = []
-	end
-
-	def add_book
-		
-
-
-
-
+  def add_book; end
 end

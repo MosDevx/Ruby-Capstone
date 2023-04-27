@@ -15,7 +15,7 @@ class Author
     @id = SecureRandom.uuid.delete('-')[0, 8]
   end
 
-  def to_s 
+  def to_s
     "#{@first_name}#{@last_name}".downcase
   end
 
