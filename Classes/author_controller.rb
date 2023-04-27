@@ -1,6 +1,8 @@
 require_relative 'author'
+require_relative 'input_validator'
 
 class AuthorController
+  include InputValidator
   attr_accessor :authors
 
   def initialize
@@ -10,9 +12,9 @@ class AuthorController
   def create_author
     puts 'Please enter the following information: '
     print 'First Name: '
-    first_name = get_valid_name
+    first_name = fetch_valid_name('First Name: ')
     print 'Last Name: '
-    last_name = get_valid_name
+    last_name = fetch_valid_name('Last Name: ')
 
     full_name = (first_name + last_name).downcase
 
@@ -48,25 +50,5 @@ class AuthorController
   end
 end
 
-
-def get_valid_name
-	input = gets.chomp.to_i
-	until input.between?(1, 6)
-		puts 'Invalid input, please try again'
-		input = gets.chomp.to_i
-	end
-	input
-end
-
-
-VALID_INPUT = ('a'...'z').to_a + ('A'...'Z').to_a
-
-def get_valid_name
-	input = gets.chomp
-	until input.split('').all? { |char| VALID_INPUT.include?(char) }
-		puts 'Invalid input, please try again'
-		input = gets.chomp
-	end
-	input
-end
-
+aut = AuthorController.new
+aut.create_author
