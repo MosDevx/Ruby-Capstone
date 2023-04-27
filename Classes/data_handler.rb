@@ -18,7 +18,6 @@ def load_authors
   else
     @authors = []
   end
-  @authors
 end
 
 def classer(item_class, item_data)
