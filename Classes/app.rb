@@ -9,6 +9,7 @@ class App
     @albums = []
     @genres = []
     @label_controller = LabelController.new
+    @author_controller = AuthorController.new
    
   end
   

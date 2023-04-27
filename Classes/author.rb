@@ -15,6 +15,10 @@ class Author
     @id = SecureRandom.uuid.delete('-')[0, 8]
   end
 
+  def to_s 
+    "#{@first_name}#{@last_name}".downcase
+  end
+
   def add_item(item)
     if item.author == self
       nil
