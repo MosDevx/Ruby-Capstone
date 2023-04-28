@@ -5,6 +5,11 @@ require_relative './item'
 require_relative './game'
 require_relative './author'
 require_relative './data_handler'
+require_relative 'book_controller'
+# require_relative 'music_album_controller'
+require_relative 'author_controller'
+require_relative 'label_controller'
+require_relative 'genre_controller'
 
 class App
   attr_accessor :albums, :genres, :games, :authors
@@ -14,6 +19,24 @@ class App
     @genres = []
     @authors = []
     @games = []
+
+    @label_controller = LabelController.new
+    @author_controller = AuthorController.new
+    @genre_controller = GenreController.new
+
+    @book_controller = BookController.new
+  end
+
+  def list_books
+    @book_controller.list_books
+  end
+
+  def add_book
+    author = @author_controller.create_author
+    genre = @genre_controller.create_genre
+    label = @label_controller.create_label
+
+    @book_controller.create_book(author: author, genre: genre, label: label)
   end
 
   def add_music_album
@@ -142,6 +165,8 @@ class App
 
   def save_data
     FileUtils.mkdir_p('data')
+
+    @book_controller.save_to_file('books', @book_controller.books)
 
     File.write('data/albums.json', JSON.pretty_generate(@albums))
     File.write('data/genre.json', JSON.pretty_generate(@genres))
