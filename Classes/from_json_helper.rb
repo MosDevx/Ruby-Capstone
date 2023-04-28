@@ -104,4 +104,31 @@ module FromJsonHelper
 			end
 	end
 
+	def to_json_custom(*_args)
+    my_hash ={}
+
+    instance_variables.each do |var|
+      unless instance_variable_get(var).kind_of?(Array)
+        my_hash[var] = instance_variable_get(var)
+      else
+        my_hash[var] = breaker(instance_variable_get(var))
+      end
+
+    end
+    my_hash.to_json
+
+  end
+
+  def from_json(json_string)
+    hash = JSON.parse(json_string, create_additions: true)
+
+    hash.each do |var, val|
+      unless val.kind_of?(Hash)
+        instance_variable_set var, val
+      else
+        instance_variable_set var, uniter(val)
+      end
+    end
+  end
+
 end
