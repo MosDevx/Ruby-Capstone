@@ -43,5 +43,3 @@ class BookController
     end
   end
 end
-
-
