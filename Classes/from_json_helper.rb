@@ -65,8 +65,8 @@ module FromJsonHelper
 		end
 
 		# puts jsoned.to_json
-		unhash_the_json(jsoned.to_json)
-
+		# unhash_the_json(jsoned.to_json)
+		jsoned 
 
 	end
 
@@ -78,8 +78,9 @@ module FromJsonHelper
 
 	def uniter(hash)
 		items_array = []
+		# puts hash.class
 		hash.each do |key, value|
-
+			# puts value.class
 			value.each do |obj_data|
 				new_obj = item_factory(key)
 				new_obj.from_json(obj_data)
@@ -88,7 +89,7 @@ module FromJsonHelper
 		
 		end
 
-		puts items_array
+		items_array
 	end
 
 	def item_factory(item_type)

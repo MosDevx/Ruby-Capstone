@@ -8,7 +8,7 @@ require_relative 'from_json_helper'
 class Author
   include FromJsonHelper
   attr_reader :id
-  attr_accessor :first_name, :last_name
+  attr_accessor :first_name, :last_name,:items
 
   def initialize(first_name: '', last_name: '')
     @first_name = first_name.capitalize
@@ -37,29 +37,43 @@ class Author
   end
 
   def to_json_custom(*_args)
-    books, games, music_albums = break_up_items(@items)
-    {
-      'first_name' => @first_name,
-      'last_name' => @last_name,
-      'id' => @id,
-      'books' => books.map(&:to_json_custom),
-      'games' => games.map(&:to_json_custom),
-      'music_albums' => music_albums.map(&:to_json_custom)
-    }.to_json
+    my_hash ={}
+
+    instance_variables.each do |var|
+      unless instance_variable_get(var).kind_of?(Array)
+        my_hash[var] = instance_variable_get(var)
+      else
+        my_hash[var] = breaker(instance_variable_get(var))
+      end
+
+    end
+    my_hash.to_json
+
   end
 
   def from_json(json_string)
-    hash = JSON.parse(json_string)
+    hash = JSON.parse(json_string, create_additions: true)
+
+    hash.each do |var, val|
+      unless val.kind_of?(Hash)
+        instance_variable_set var, val
+      else
+        instance_variable_set var, uniter(val)
+      end
+    end
+
     # puts hash
-    first_name = hash['first_name']
-    last_name = hash['last_name']
-    id = hash['id']
-    puts hash['books']
-    items = gather_items(books: hash['books'], games: hash['games'], music_albums: hash['music_albums'])
-    @first_name = first_name
-    @last_name = last_name
-    @id = id
-    @items = items
+    # first_name = hash['first_name']
+    # last_name = hash['last_name']
+    # id = hash['id']
+    # # puts hash['items'].class
+    # items = uniter(hash['items'])
+    # # puts hash['books']
+    # # items = gather_items(books: hash['books'], games: hash['games'], music_albums: hash['music_albums'])
+    # @first_name = first_name
+    # @last_name = last_name
+    # @id = id
+    # @items = items
   end
 
   def test
@@ -68,9 +82,9 @@ class Author
     nil
   end
 
-  private
+  # private
 
-  attr_accessor :items
+  # attr_accessor :items
 end
 
 book = Book.new(publisher: 'Penguin')
@@ -84,12 +98,15 @@ author.add_item(game)
 author.add_item(game2)
 # author.add_item(book2)
 
-author.test
+# author.test
 
-# my_json = author.to_json_custom
+my_json = author.to_json_custom
 # puts my_json
-# auth2 = Author.new
-# auth2.from_json(my_json)
+auth2 = Author.new
+auth2.from_json(my_json)
 # puts auth2.items.last.publisher
-# puts author.id
-# puts auth2.id
+puts author.id
+puts auth2.id
+
+puts auth2.items[2].name
+puts author.items[2].name
