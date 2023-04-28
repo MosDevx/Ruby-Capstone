@@ -1,0 +1,15 @@
+[
+  {
+    "first_name": "ad",
+    "last_name": "asd",
+    "items": [
+      {
+        "name": "asd",
+        "multiplayer": true,
+        "last_played_at": "ads",
+        "publish_date": "asd",
+        "class": "Game"
+      }
+    ]
+  }
+]
