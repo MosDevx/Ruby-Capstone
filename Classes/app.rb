@@ -39,6 +39,7 @@ class App
     @book_controller.create_book(author: author, genre: genre, label: label)
   end
 
+<<<<<<< HEAD
   def list_labels
     @label_controller.list_labels
   end
@@ -47,6 +48,12 @@ class App
     puts 'Album title: '
     name = gets.chomp.to_s
     puts 'Publish date: '
+=======
+  def add_music_album
+    puts 'Album title: '
+    name = gets.chomp.to_s
+    puts 'Publish data: '
+>>>>>>> 084dabeb3259cc508234447ed2c5ae72da457b3f
     date = gets.chomp.to_s
     puts 'Genre: '
     genre_name = gets.chomp.to_s
@@ -83,20 +90,6 @@ class App
     end
   end
 
-  # def read_file(file)
-  #   read_file = File.read(file)
-  #   JSON.parse(read_file)
-  # end
-
-  # def load_data
-  #   @albums = File.exist?('./data/albums.json') ? read_file('./data/albums.json') : []
-  #   @genres = File.exist?('./data/genre.json') ? read_file('./data/genre.json') : []
-  # end
-
-  # def save_data
-  #   File.write('./data/albums.json', JSON.pretty_generate(@albums))
-  #   File.write('./data/genre.json', JSON.pretty_generate(@genres))
-  # end
 
   def list_games
     if @games.empty?
