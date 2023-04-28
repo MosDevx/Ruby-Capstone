@@ -13,7 +13,7 @@ class Game < Item
 
   def author=(author)
     @author = author
-    author.items << self unless author.items.include?(self)
+    # author.items << self unless author.items.include?(self)
   end
 
   private

@@ -1,12 +1,14 @@
 require 'securerandom'
 
 require_relative 'book'
+require_relative 'label'
+require_relative 'game'
 require_relative 'from_json_helper'
 
 class Author
   include FromJsonHelper
   attr_reader :id
-  attr_accessor :first_name, :last_name, :items
+  attr_accessor :first_name, :last_name
 
   def initialize(first_name: '', last_name: '')
     @first_name = first_name.capitalize
@@ -59,14 +61,27 @@ class Author
     @id = id
     @items = items
   end
+
+  def test
+    breaker(@items)
+    # puts hey
+    nil
+  end
+
+  private
+  attr_accessor :items
 end
 
-# book = Book.new(publisher: 'Penguin')
-# book2 = Book.new(publisher: 'Pen')
-# author = Author.new(first_name: 'John', last_name: 'Doe')
+book = Book.new(publisher: 'Penguin')
+game = Game.new( name: 'Fifa',last_played_at: '2019-01-01',multiplayer: true )
+book2 = Book.new(publisher: 'Pen')
+author = Author.new(first_name: 'John', last_name: 'Doe')
 
-# author.add_item(book)
+author.add_item(book)
+author.add_item(game)
 # author.add_item(book2)
+
+author.test
 
 # my_json = author.to_json_custom
 # puts my_json

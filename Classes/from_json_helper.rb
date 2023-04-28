@@ -1,5 +1,6 @@
 module FromJsonHelper
-  def gather_items(books: [], games: [], music_albums: [])
+ 
+	def gather_items(books: [], games: [], music_albums: [])
     new_books = books.map do |bk|
       book = Book.new
       book.from_json(bk)
@@ -37,4 +38,27 @@ module FromJsonHelper
 
     [books, games, music_albums]
   end
-end
+
+
+	def breaker (items=[])
+
+		# make arrays
+		my_hash = {}
+		
+		items.each do |item|
+		
+			array_name = item.class.to_s.downcase + 's'
+			puts array_name
+			array_name = array_name.to_sym
+		
+			if(my_hash[array_name].nil?)
+				my_hash[array_name] = []
+				my_hash[array_name].push(item)
+			else
+				my_hash[array_name].push(item)
+			end
+		end
+		puts my_hash[:games][0].multiplayer
+	end
+
+	end
