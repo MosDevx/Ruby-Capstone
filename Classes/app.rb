@@ -39,7 +39,6 @@ class App
     @book_controller.create_book(author: author, genre: genre, label: label)
   end
 
-<<<<<<< HEAD
   def list_labels
     @label_controller.list_labels
   end
@@ -48,12 +47,6 @@ class App
     puts 'Album title: '
     name = gets.chomp.to_s
     puts 'Publish date: '
-=======
-  def add_music_album
-    puts 'Album title: '
-    name = gets.chomp.to_s
-    puts 'Publish data: '
->>>>>>> 084dabeb3259cc508234447ed2c5ae72da457b3f
     date = gets.chomp.to_s
     puts 'Genre: '
     genre_name = gets.chomp.to_s
