@@ -30,9 +30,7 @@ module InputValidator
       date = gets.chomp
       date.match(/\A\d{4}-(0?[1-9]|1[0-2])-(0?[1-9]|[12][0-9]|3[01])\z/)
       parseable = Date.strptime(date, '%Y-%m-%d')
-      if parseable > Date.today
-        throw StandardError
-      end
+      throw StandardError if parseable > Date.today
     rescue StandardError
       puts '!! Please enter a valid date in the past !!'
       print place_holder
@@ -44,7 +42,7 @@ module InputValidator
     #   print place_holder
     #   date = gets.chomp
     #   parseable = Date.strptime(date, '%Y-%m-%d')
-   
+
     # end
     puts parseable
     parseable

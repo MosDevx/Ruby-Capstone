@@ -69,16 +69,19 @@ class Author
   end
 
   private
+
   attr_accessor :items
 end
 
 book = Book.new(publisher: 'Penguin')
-game = Game.new( name: 'Fifa',last_played_at: '2019-01-01',multiplayer: true )
+game = Game.new(name: 'Fifa', last_played_at: '2019-01-01', multiplayer: true)
+game2 = Game.new(name: 'PES', last_played_at: '2019-01-01', multiplayer: true)
 book2 = Book.new(publisher: 'Pen')
 author = Author.new(first_name: 'John', last_name: 'Doe')
 
 author.add_item(book)
 author.add_item(game)
+author.add_item(game2)
 # author.add_item(book2)
 
 author.test

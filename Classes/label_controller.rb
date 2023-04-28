@@ -11,7 +11,7 @@ class LabelController
   end
 
   def populate_label_from_file
-    data = HandleData.read('labels')  
+    data = HandleData.read('labels')
     data.each do |label_string|
       label = Label.new
       label.from_json(label_string)
@@ -44,8 +44,4 @@ class LabelController
     prepared_data = @labels.map(&:to_json_custom)
     HandleData.write('labels', prepared_data)
   end
-
-
 end
-
-

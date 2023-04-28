@@ -15,7 +15,7 @@ class App
     @book_controller = BookController.new
   end
 
-  def list_books; 
+  def list_books
     @book_controller.list_books
   end
 
