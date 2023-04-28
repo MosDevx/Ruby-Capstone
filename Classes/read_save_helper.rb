@@ -1,5 +1,9 @@
-module ReadSaveHelper
+require_relative 'handle_data'
+require_relative 'item_factory'
 
+
+module ReadSaveHelper
+	include ItemFactory
   def populate_from_file(filename)
     data = HandleData.read(filename)
 		data_array = []
@@ -23,21 +27,5 @@ module ReadSaveHelper
   end
 
 
-	def item_factory(item_type)
-		class_name = item_type.delete('s')
-		case class_name
-		when 'genre'
-			Genre.new
-		when 'label'
-			Label.new
-		when 'author'
-			Author.new
-		when 'book'
-			Book.new
-		when 'game'
-			Game.new
-		when 'music'
-			MusicAlbum.new
-		end
-end
+
 end

@@ -5,6 +5,7 @@ require_relative 'label'
 require_relative 'game'
 require_relative 'from_json_helper'
 
+
 class Author
   include FromJsonHelper
   attr_reader :id
@@ -41,26 +42,26 @@ class Author
   # attr_accessor :items
 end
 
-book = Book.new(publisher: 'Penguin')
-game = Game.new(name: 'Fifa', last_played_at: '2019-01-01', multiplayer: true)
-game2 = Game.new(name: 'PES', last_played_at: '2019-01-01', multiplayer: true)
-book2 = Book.new(publisher: 'Pen')
-author = Author.new(first_name: 'John', last_name: 'Doe')
+# book = Book.new(publisher: 'Penguin')
+# game = Game.new(name: 'Fifa', last_played_at: '2019-01-01', multiplayer: true)
+# game2 = Game.new(name: 'PES', last_played_at: '2019-01-01', multiplayer: true)
+# book2 = Book.new(publisher: 'Pen')
+# author = Author.new(first_name: 'John', last_name: 'Doe')
 
-author.add_item(book)
-author.add_item(game)
-author.add_item(game2)
-# author.add_item(book2)
+# author.add_item(book)
+# author.add_item(game)
+# author.add_item(game2)
+# # author.add_item(book2)
 
-# author.test
+# # author.test
 
-my_json = author.to_json_custom
-# puts my_json
-auth2 = Author.new
-auth2.from_json(my_json)
-# puts auth2.items.last.publisher
-puts author.id
-puts auth2.id
+# my_json = author.to_json_custom
+# # puts my_json
+# auth2 = Author.new
+# auth2.from_json(my_json)
+# # puts auth2.items.last.publisher
+# puts author.id
+# puts auth2.id
 
-puts auth2.items[2].name
-puts author.items[2].name
+# puts auth2.items[2].name
+# puts author.items[2].name

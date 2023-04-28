@@ -1,5 +1,12 @@
 require 'json'
+# require_relative 'item_factory'
+require_relative 'book'
+require_relative 'game'
+require_relative 'music_album'
+
+
 module FromJsonHelper
+
 
 
 	# Recieves an array of instances. Makes a hash with the key  equal to the class name of the instance + s. And the value is an array of the instances.

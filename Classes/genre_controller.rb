@@ -1,6 +1,5 @@
-require_relative 'genre'
+# require_relative 'genre'
 require_relative 'input_validator'
-require_relative 'handle_data'
 require_relative 'read_save_helper'
 
 class GenreController
