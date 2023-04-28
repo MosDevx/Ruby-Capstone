@@ -58,7 +58,7 @@ module FromJsonHelper
 				my_hash[array_name].push(item)
 			end
 		end
-		puts my_hash[:games][0].multiplayer
+		puts my_hash.keys
 	end
 
 	end
