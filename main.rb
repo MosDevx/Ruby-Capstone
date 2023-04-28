@@ -1,4 +1,4 @@
-require './app'
+require './Classes/app'
 
 def list_options
   "Welcome to my catalog of things
@@ -23,7 +23,7 @@ def option(option, app)
   when 3
     app.list_games
   when 4
-    app.list_generes
+    app.list_genres
   when 5
     app.list_labels
   when 6
@@ -35,6 +35,7 @@ def option(option, app)
   when 9
     app.add_game
   when 10
+    app.save_data
     exit
   else
     puts 'Invalid option, please type correct number!'
@@ -42,8 +43,13 @@ def option(option, app)
 end
 
 def main
+  app = App.new
+  app.load_data
+
   loop do
     puts list_options
+    puts
+    print 'Please select an option:'
     option = gets.chomp.to_i
     option(option, app)
   end
