@@ -8,7 +8,7 @@ require_relative 'from_json_helper'
 class Author
   include FromJsonHelper
   attr_reader :id
-  attr_accessor :first_name, :last_name,:items
+  attr_accessor :first_name, :last_name, :items
 
   def initialize(first_name: '', last_name: '')
     @first_name = first_name.capitalize
@@ -35,8 +35,6 @@ class Author
       raise 'Item already has an author'
     end
   end
-
-
 
   # private
 

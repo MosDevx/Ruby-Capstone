@@ -1,43 +1,9 @@
 module FromJsonHelper
-  # def gather_items(books: [], games: [], music_albums: [])
-  #   new_books = books.map do |bk|
-  #     book = Book.new
-  #     book.from_json(bk)
-  #     book
-  #   end
 
-  #   games.map do |gm|
-  #     game = Game.new
-  #     game.from_json(gm)
-  #     game
-  #   end
-  #   music_albums = music_albums.map do |ma|
-  #     music_album = MusicAlbum.new
-  #     music_album.from_json(ma)
-  #     music_album
-  #   end
 
-  #   new_books + games + music_albums
-  # end
-
-  # def break_up_items(items)
-  #   books = []
-  #   games = []
-  #   music_albums = []
-
-  #   items.each do |item|
-  #     if item.instance_of?(Book)
-  #       books << item
-  #     elsif item.instance_of?(Game)
-  #       games << item
-  #     elsif item.instance_of?(MusicAlbum)
-  #       music_albums << item
-  #     end
-  #   end
-
-  #   [books, games, music_albums]
-  # end
-
+	# Recieves an array of instances. Makes a hash with the key  equal to the class name of the instance + s. And the value is an array of the instances.
+	# passes the hash to json_the_hash to be jsoned.
+	# so breaker will return a hash whose values are all jsoned instances.
   def breaker(items = [])
     # make arrays
 		# puts items
@@ -50,14 +16,14 @@ module FromJsonHelper
       my_hash[array_name] = [] if my_hash[array_name].nil?
       my_hash[array_name].push(item)
     end
-    # puts my_hash
 		
 
 		json_the_hash(my_hash)
 
   end
 
-
+	# Recieves a hash whose values are arrayss of instances. Loops through the arrays of instance and calles their custom to_json method.
+	# returns the hash with the values being the jsoned instances.
 	def json_the_hash(hash)
 		jsoned ={}
 		hash.each do |key, value|
@@ -70,12 +36,15 @@ module FromJsonHelper
 
 	end
 
+	# Recieves a json string. Parses the json string into a hash. Passes the hash to uniter to be unjsoned.
 	def unhash_the_json(json_string)
 		hash = JSON.parse(json_string)
 		# puts hash
 		uniter(hash)
 	end
 
+	# Recieves a hash whose values are arrays of jsoned instances. Loops through the arrays of jsoned instances and calles their from_json method.
+	# returns an array of instances.
 	def uniter(hash)
 		items_array = []
 		# puts hash.class
@@ -92,6 +61,8 @@ module FromJsonHelper
 		items_array
 	end
 
+	# Recieves a name of a class. Removes the last s
+	# Returns an instance of that particular class.
 	def item_factory(item_type)
 			class_name = item_type.delete('s')
 			case class_name
@@ -104,6 +75,10 @@ module FromJsonHelper
 			end
 	end
 
+	# When calleed will change the whole instance into a json string. For classes with instances that have attributes/properties that are arrays.
+	# May work with other instances but not tested.
+	# call breaker above
+	# returns a json string
 	def to_json_custom(*_args)
     my_hash ={}
 
@@ -119,6 +94,10 @@ module FromJsonHelper
 
   end
 
+	# For remaking an instance from a json string. Made For instance which have atributes that are arays.
+	# May work with other instances but not tested.
+# calls uniter above
+# doesnt return. Just sets the instance variables.
   def from_json(json_string)
     hash = JSON.parse(json_string, create_additions: true)
 
