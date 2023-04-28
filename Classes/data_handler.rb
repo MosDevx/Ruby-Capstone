@@ -28,7 +28,7 @@ def create_item(item_class, item_data)
     MusicAlbum.new(name: item_data['name'], on_spotify: item_data['on_spotify'],
                    publish_date: item_data['publish_date'])
   when 'Book'
-    Book.new(title: item_data['name'], item_init:{author: item_data['author']})
+    Book.new(title: item_data['name'], item_init: { author: item_data['author'] })
   end
 end
 

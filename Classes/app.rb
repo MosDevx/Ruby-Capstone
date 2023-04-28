@@ -42,6 +42,7 @@ class App
   def list_labels
     @label_controller.list_labels
   end
+
   def add_music_album
     puts 'Album title: '
     name = gets.chomp.to_s
@@ -82,20 +83,21 @@ class App
     end
   end
 
-  def read_file(file)
-    read_file = File.read(file)
-    JSON.parse(read_file)
-  end
+  # def read_file(file)
+  #   read_file = File.read(file)
+  #   JSON.parse(read_file)
+  # end
 
-  def load_data
-    @albums = File.exist?('./data/albums.json') ? read_file('./data/albums.json') : []
-    @genres = File.exist?('./data/genre.json') ? read_file('./data/genre.json') : []
-  end
+  # def load_data
+  #   @albums = File.exist?('./data/albums.json') ? read_file('./data/albums.json') : []
+  #   @genres = File.exist?('./data/genre.json') ? read_file('./data/genre.json') : []
+  # end
 
-  def save_data
-    File.write('./data/albums.json', JSON.pretty_generate(@albums))
-    File.write('./data/genre.json', JSON.pretty_generate(@genres))
-  end
+  # def save_data
+  #   File.write('./data/albums.json', JSON.pretty_generate(@albums))
+  #   File.write('./data/genre.json', JSON.pretty_generate(@genres))
+  # end
+
   def list_games
     if @games.empty?
       puts 'No games in the library'
@@ -175,7 +177,7 @@ class App
 
     File.write('data/albums.json', JSON.pretty_generate(@albums))
     File.write('data/genre.json', JSON.pretty_generate(@genres))
-    @authors.concat( @author_controller.authors)
+    @authors.concat(@author_controller.authors)
     File.write('data/authors.json', JSON.pretty_generate(@authors.map(&:hashify)))
     File.write('data/games.json', JSON.pretty_generate(@games.map(&:hashify)))
   end

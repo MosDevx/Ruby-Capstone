@@ -48,6 +48,8 @@ def main
 
   loop do
     puts list_options
+    puts
+    print 'Please select an option:'
     option = gets.chomp.to_i
     option(option, app)
   end
