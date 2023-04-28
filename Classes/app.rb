@@ -83,7 +83,6 @@ class App
     end
   end
 
-
   def list_games
     if @games.empty?
       puts 'No games in the library'
