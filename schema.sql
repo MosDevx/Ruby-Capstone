@@ -59,6 +59,8 @@ create table Books (
     id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name VARCHAR(250),
     publish_date DATE,
+    publisher VARCHAR(250),
+    cover_state VARCHAR(250),
     genre_id INT,
     label_id INT,
     source_id INT,
