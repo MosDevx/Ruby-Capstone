@@ -14,6 +14,18 @@ module InputValidator
     input
   end
 
+  def fetch_valid_full_name(place_holder)
+    input = gets.chomp
+    lower_input = input.downcase
+    until lower_input.chars.all? { |char| VALID_ALPHA.include?(char) || char == ' ' }
+      puts '!! Please enter only letters !!'
+      print place_holder
+      input = gets.chomp
+      lower_input = input.downcase
+    end
+    input
+  end
+
   def fetch_valid_number(place_holder)
     begin
       user_age = Integer(gets.chomp)
@@ -46,6 +58,18 @@ module InputValidator
     # end
     puts parseable
     parseable
+  end
+
+  def fetch_valid_yes_no(place_holder)
+    input = gets.chomp
+    lower_input = input.downcase
+    until %w[y n yes no].include?(lower_input)
+      puts '!! Please enter yes or no !!'
+      print place_holder
+      input = gets.chomp
+      lower_input = input.downcase
+    end
+    %w[y yes].include?(lower_input)
   end
 
   def fetch_valid_cover_state(place_holder)

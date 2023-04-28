@@ -1,8 +1,1 @@
-[
-  {
-    "Title": "a",
-    "Publish_date": "a",
-    "Is on spotify?": true,
-    "Genre": "b"
-  }
-]
+["{\"@publish_date\":\"0010-10-10\",\"@id\":\"5e13f0a5\",\"@genre\":\"Pop\",\"@label\":\"\",\"@source\":\"\",\"@author\":\"\",\"@on_spotify\":true,\"@name\":\"rew\"}","{\"@publish_date\":\"0010-10-10\",\"@id\":\"1dcbb21b\",\"@genre\":\"Pop\",\"@label\":\"\",\"@source\":\"\",\"@author\":\"\",\"@on_spotify\":false,\"@name\":\"asd\"}"]

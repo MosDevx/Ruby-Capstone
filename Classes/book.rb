@@ -4,7 +4,7 @@ class Book < Item
   attr_accessor :title, :publisher, :cover_state
 
   def initialize(title: '', publisher: '', cover_state: '', item_init: {})
-    @title = title
+    @title = title.capitalize
     @publisher = publisher
     @cover_state = cover_state
     super(**item_init)

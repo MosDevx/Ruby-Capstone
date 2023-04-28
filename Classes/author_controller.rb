@@ -1,12 +1,11 @@
 require_relative 'author'
-require_relative 'input_validator'
-
+require_relative 'controller'
 class AuthorController
-  include InputValidator
+  include Controller
   attr_accessor :authors
 
   def initialize
-    @authors = []
+    @authors = populate_from_file('authors') || []
   end
 
   def create_author
@@ -21,12 +20,16 @@ class AuthorController
     if new_author?(full_name)
       author = Author.new(first_name: first_name, last_name: last_name)
       @authors << author
+      puts
       puts '+++ New Author created! +++'
+      puts
       author
     else
+      puts
       puts 'Author already exists!'
       existing_author = @authors.find {	|auth| auth.to_s == full_name }
       puts 'Returning existing author...'
+      puts
       existing_author
     end
   end
@@ -40,9 +43,10 @@ class AuthorController
 
   def list_authors
     if authors.empty?
-      puts 'Please create an author'
+      puts '~~~ No Authors Found ~~~'
+      # puts 'Please create an author'
     else
-      puts '<<Authors: >>'
+      puts '<< List of Authors: >>'
       authors.each do |author|
         # puts "Name: #{author.first_name} #{author.last_name}"
         puts "Name: #{author}"
@@ -50,10 +54,3 @@ class AuthorController
     end
   end
 end
-
-# ac = AuthorController.new
-# ac.create_author
-# ac.list_authors
-
-# ac.create_author
-# ac.list_authors

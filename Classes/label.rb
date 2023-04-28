@@ -8,8 +8,8 @@ class Label
   attr_accessor :title, :color
 
   def initialize(title: '', color: '')
-    @title = title
-    @color = color
+    @title = title.capitalize
+    @color = color.capitalize
     @items = []
     generate_id
   end

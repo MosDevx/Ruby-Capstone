@@ -36,6 +36,10 @@ def option(option, app)
     app.add_game
   when 10
     app.save_data
+    puts '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+    puts '~~~~~ Thank You and GoodBye!! :) ~~~~'
+    puts '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+    puts
     exit
   else
     puts 'Invalid option, please type correct number!'
@@ -44,13 +48,15 @@ end
 
 def main
   app = App.new
-  app.load_data
+  # app.load_data
 
   loop do
+    puts
     puts list_options
     puts
     print 'Please select an option:'
     option = gets.chomp.to_i
+    puts
     option(option, app)
   end
 end
