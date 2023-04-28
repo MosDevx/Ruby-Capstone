@@ -1,8 +1,10 @@
 require 'securerandom'
 require 'date'
 require 'json'
+require_relative 'json_helper'
 
 class Item
+  include JsonHelper
   attr_accessor :genre, :author, :source, :label, :publish_date, :archived
 
   def initialize(publish_date: '', genre: '', label: '', source: '', author: '')
@@ -24,20 +26,20 @@ class Item
     @archived = true
   end
 
-  def to_json_custom()
-    hash = {}
-    instance_variables.each do |var|
-      hash[var] = instance_variable_get(var)
-    end
-    # puts hash.class
-    hash.to_json
-  end
+  # def to_json_custom()
+  #   hash = {}
+  #   instance_variables.each do |var|
+  #     hash[var] = instance_variable_get(var)
+  #   end
+  #   # puts hash.class
+  #   hash.to_json
+  # end
 
-  def from_json(string)
-    hash = JSON.parse(string).each do |var, val|
-      instance_variable_set var, val
-    end
-  end
+  # def from_json(string)
+  #   hash = JSON.parse(string).each do |var, val|
+  #     instance_variable_set var, val
+  #   end
+  # end
 
   private
 

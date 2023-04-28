@@ -1,7 +1,7 @@
-require_relative 'from_json_helper'
+require_relative 'json_helper'
 
 class Genre
-  include FromJsonHelper
+  include JsonHelper
   attr_reader :id, :name, :items
 
   def initialize(name:'')

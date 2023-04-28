@@ -1,11 +1,11 @@
 require 'json'
 # require_relative 'item_factory'
-require_relative 'book'
-require_relative 'game'
-require_relative 'music_album'
+# require_relative 'book'
+# require_relative 'game'
+# require_relative 'music_album'
 
 
-module FromJsonHelper
+module JsonHelper
 
 
 
