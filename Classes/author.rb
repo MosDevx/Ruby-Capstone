@@ -61,25 +61,6 @@ class Author
         instance_variable_set var, uniter(val)
       end
     end
-
-    # puts hash
-    # first_name = hash['first_name']
-    # last_name = hash['last_name']
-    # id = hash['id']
-    # # puts hash['items'].class
-    # items = uniter(hash['items'])
-    # # puts hash['books']
-    # # items = gather_items(books: hash['books'], games: hash['games'], music_albums: hash['music_albums'])
-    # @first_name = first_name
-    # @last_name = last_name
-    # @id = id
-    # @items = items
-  end
-
-  def test
-    breaker(@items)
-    # puts hey
-    nil
   end
 
   # private
