@@ -8,7 +8,7 @@ class HandleData
       JSON.parse(data)
     end
   rescue StandardError
-    puts "!!#{file_name}file not found !!"
+    puts "...#{file_name} file not found..."
     []
   end
 

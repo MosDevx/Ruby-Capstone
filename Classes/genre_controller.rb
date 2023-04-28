@@ -22,7 +22,7 @@ class GenreController
     if new_genre?(genre_name)
       genre = Genre.new(name: genre_name)
       @genres << genre
-      puts 'New Genre created!'
+      puts '+++ New Genre created! +++'
       genre
     else
       puts 'Genre already exists!'
@@ -43,7 +43,7 @@ class GenreController
     if @genres.empty?
       puts 'Please create a genre'
     else
-      puts '<<Genres: >>'
+      puts '<<< List Of Genres >>>'
       @genres.each do |genre|
         puts "Genre: #{genre.name}"
       end
@@ -55,8 +55,8 @@ end
 
 
 gn = GenreController.new
-# gn.create_genre
+gn.create_genre
 
 gn.list_genres
 
-# gn.save_to_file('genres',gn.genres)
+gn.save_to_file('genres',gn.genres)

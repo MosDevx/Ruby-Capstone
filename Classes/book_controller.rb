@@ -42,6 +42,7 @@ class BookController
     if @books.empty?
       puts 'No books found!'
     else
+      puts '<<< List of Books >>>'
       @books.each do |book|
         print "Title: #{book.title} "
         puts "Author: #{book.author}"
