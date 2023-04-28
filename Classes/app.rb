@@ -141,9 +141,8 @@ class App
   end
 
   def save_data
-    unless Dir.exist?('data')
-      Dir.mkdir('data')
-    end
+    FileUtils.mkdir_p('data')
+
     File.write('data/albums.json', JSON.pretty_generate(@albums))
     File.write('data/genre.json', JSON.pretty_generate(@genres))
     File.write('data/authors.json', JSON.pretty_generate(@authors.map(&:hashify)))
@@ -156,10 +155,9 @@ class App
   end
 
   def load_data
-    @albums = File.exist?('./data/albums.json') ? read_file('./data/albums.json') : []
-    @genres = File.exist?('./data/genre.json') ? read_file('./data/genre.json') : []
+    @albums = File.exist?('data/albums.json') ? read_file('data/albums.json') : []
+    @genres = File.exist?('data/genre.json') ? read_file('data/genre.json') : []
     @games = load_games
     @authors = load_authors
-
   end
 end
