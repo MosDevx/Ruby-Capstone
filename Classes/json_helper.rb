@@ -1,6 +1,5 @@
 require 'json'
 
-
 module JsonHelper
   # Recieves an array of instances. Makes a hash with the key  equal to the class
   # name of the instance + s. And the value is an array of the instances.
