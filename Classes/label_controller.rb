@@ -7,20 +7,10 @@ class LabelController
 
   def initialize
     @labels = []
-    populate_label_from_file
-  end
-
-  def populate_label_from_file
-    data = HandleData.read('labels')
-    data.each do |label_string|
-      label = Label.new
-      label.from_json(label_string)
-      @labels.push(label)
-    end
   end
 
   def create_label
-    puts 'Please enter the following information: '
+    puts 'Please enter the following (Label) info: '
     print 'Title: '
     title = gets.chomp.to_s
     print 'Color: '
@@ -38,10 +28,5 @@ class LabelController
         puts "Title: #{label.title}, Color: #{label.color}"
       end
     end
-  end
-
-  def save_to_file
-    prepared_data = @labels.map(&:to_json_custom)
-    HandleData.write('labels', prepared_data)
   end
 end

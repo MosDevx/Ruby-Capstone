@@ -10,7 +10,7 @@ class AuthorController
   end
 
   def create_author
-    puts 'Please enter the following information: '
+    puts 'Please enter the following (Author) info: '
     print 'First Name: '
     first_name = fetch_valid_name('First Name: ')
     print 'Last Name: '
@@ -21,7 +21,7 @@ class AuthorController
     if new_author?(full_name)
       author = Author.new(first_name: first_name, last_name: last_name)
       @authors << author
-      puts 'New Author created!'
+      puts '+++ New Author created! +++'
       author
     else
       puts 'Author already exists!'
@@ -51,9 +51,9 @@ class AuthorController
   end
 end
 
-ac = AuthorController.new
-ac.create_author
-ac.list_authors
+# ac = AuthorController.new
+# ac.create_author
+# ac.list_authors
 
-ac.create_author
-ac.list_authors
+# ac.create_author
+# ac.list_authors

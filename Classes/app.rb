@@ -1,5 +1,9 @@
 require_relative './music_album'
 require_relative './genre'
+require_relative 'label_controller'
+require_relative 'author_controller'
+require_relative 'genre_controller'
+require_relative 'book_controller'
 require 'json'
 
 class App
@@ -24,7 +28,7 @@ class App
     genre = @genre_controller.create_genre
     label = @label_controller.create_label
 
-    @book_controller.create_book(author, genre, label)
+    @book_controller.create_book(author: author, genre: genre, label: label)
   end
 
   def add_music_album
@@ -78,6 +82,7 @@ class App
   end
 
   def save_data
+    @book_controller.save_to_file('books', @book_controller.books)
     File.write('./data/albums.json', JSON.pretty_generate(@albums))
     File.write('./data/genre.json', JSON.pretty_generate(@genres))
   end

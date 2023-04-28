@@ -1,27 +1,19 @@
 require_relative 'book'
 require_relative 'input_validator'
 require_relative 'handle_data'
+require_relative 'read_save_helper'
 
 class BookController
   include InputValidator
+  include ReadSaveHelper
   attr_accessor :books
 
   def initialize
-    @books = []
-    populate_books_from_file
-  end
-
-  def populate_books_from_file
-    raw_data = HandleData.read('books')
-
-    raw_data.each do |book_string|
-      book = Book.new
-      book.from_json(book_string)
-      @books.push(book)
-    end
+    @books = populate_from_file('books') || []
   end
 
   def create_book(author: '', genre: '', label: '')
+    puts 'Please enter the following (Book) info: '
     print 'Book Title: '
     title = gets.chomp.to_s
     print 'Publisher: '
@@ -40,7 +32,8 @@ class BookController
 
   def list_books
     if @books.empty?
-      puts 'No books found!'
+      puts '~~ No books found! ~~'
+      puts 'Please create a book...(7)'
     else
       puts '<<< List of Books >>>'
       @books.each do |book|
@@ -49,16 +42,10 @@ class BookController
       end
     end
   end
-
-  def save_to_file
-    prepared_data = @books.map(&:to_json_custom)
-    HandleData.write('books', prepared_data)
-  end
 end
 
-bc = BookController.new
-bc.create_book
+# bc.create_book
 
-# bc.list_books
+# # bc.list_books
 
-# bc.save_to_file
+# # bc.save_to_file

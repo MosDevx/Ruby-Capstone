@@ -16,5 +16,3 @@ class Book < Item
     super() || @cover_state == 'bad'
   end
 end
-
-bk = Book.new(publisher: 'test', cover_state: 'bad', item_init: { author: 'test', genre: 'test', label: 'test' })

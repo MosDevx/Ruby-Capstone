@@ -5,16 +5,14 @@ require_relative 'read_save_helper'
 class GenreController
   include ReadSaveHelper
   attr_accessor :genres
+
   include InputValidator
   def initialize
     @genres = populate_from_file('genres') || []
-
   end
 
-
-
   def create_genre
-    puts 'Please enter the following information: '
+    puts 'Please enter the following (Genre) info: '
     print 'Genre: '
     genre_name = fetch_valid_name('Genre: ')
 
@@ -48,14 +46,11 @@ class GenreController
       end
     end
   end
-
-
 end
 
+# gn = GenreController.new
+# gn.create_genre
 
-gn = GenreController.new
-gn.create_genre
+# gn.list_genres
 
-gn.list_genres
-
-gn.save_to_file('genres',gn.genres)
+# gn.save_to_file('genres',gn.genres)
