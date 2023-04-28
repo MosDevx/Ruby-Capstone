@@ -1,21 +1,18 @@
 require_relative 'genre'
 require_relative 'input_validator'
+require_relative 'handle_data'
+require_relative 'read_save_helper'
 
 class GenreController
+  include ReadSaveHelper
+  attr_accessor :genres
   include InputValidator
   def initialize
-    @genres = []
-    populate_genre_from_file
+    @genres = populate_from_file('genres') || []
+
   end
 
-  def populate_genre_from_file
-    data = HandleData.read('genres')
-    data.each do |genre_string|
-      genre = Genre.new
-      genre.from_json(genre_string)
-      @genres.push(genre)
-    end
-  end
+
 
   def create_genre
     puts 'Please enter the following information: '
@@ -23,7 +20,7 @@ class GenreController
     genre_name = fetch_valid_name('Genre: ')
 
     if new_genre?(genre_name)
-      genre = Genre.new(genre_name)
+      genre = Genre.new(name: genre_name)
       @genres << genre
       puts 'New Genre created!'
       genre
@@ -53,8 +50,13 @@ class GenreController
     end
   end
 
-  def save_to_file
-    prepared_data = @genres.map(&:to_json_custom)
-    HandleData.write('genres', prepared_data)
-  end
+
 end
+
+
+gn = GenreController.new
+# gn.create_genre
+
+gn.list_genres
+
+# gn.save_to_file('genres',gn.genres)
