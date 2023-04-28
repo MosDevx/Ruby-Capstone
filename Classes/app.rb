@@ -59,11 +59,13 @@ class App
   def list_games
     if @games.empty?
       puts 'No games in the library'
+      puts
     else
       @games.each_with_index do |game, index|
-        puts "#{index}) Name: #{game.name} - Mutliplayer: #{game.multiplayer}\n" \
-             "Last played at: #{game.last_played_at}\n" \
-             "Publish date: #{game.publish_date}"
+        puts "#{index}) #{game.name} - Mutliplayer: #{game.multiplayer}\n" \
+             "\tLast played at: #{game.last_played_at}\n" \
+             "\tPublish date: #{game.publish_date}"
+        puts
       end
     end
   end
@@ -71,10 +73,12 @@ class App
   def list_authors
     if @authors.empty?
       puts 'No authors in the library'
+      puts
     else
       @authors.each_with_index do |author, index|
         puts "#{index}) Name: #{author.first_name} #{author.last_name}\n" \
              "Items: #{author.items.map(&:name).join(', ')}"
+        puts
       end
     end
   end
@@ -139,9 +143,11 @@ class App
   end
 
   def load_data
+
     @albums = File.exist?('data/albums.json') ? read_file('data/albums.json') : []
     @genres = File.exist?('data/genre.json') ? read_file('data/genre.json') : []
-    load_games
-    load_authors
+    @games = load_games
+    @authors = load_authors
+
   end
 end
