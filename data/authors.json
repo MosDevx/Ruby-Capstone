@@ -1,3 +1,22 @@
 [
+  {
+    "first_name": "adasd",
+    "last_name": "adasd",
+    "items": [
+      {
+        "name": "addas",
+        "multiplayer": true,
+        "last_played_at": "adsasd",
+        "publish_date": "10-10-10",
+        "class": "Game"
+      }
+    ]
+  },
+  {
+    "first_name": "ghjkjkghkj",
+    "last_name": "fjkghkjhkghkj",
+    "items": [
 
+    ]
+  }
 ]

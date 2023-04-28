@@ -1,12 +1,14 @@
 require_relative 'label'
 require_relative 'input_validator'
+require_relative 'read_save_helper'
 
 class LabelController
+  include ReadSaveHelper
   include InputValidator
   attr_accessor :labels
 
   def initialize
-    @labels = []
+    @labels = populate_from_file('labels') || []
   end
 
   def create_label

@@ -39,10 +39,13 @@ class App
     @book_controller.create_book(author: author, genre: genre, label: label)
   end
 
+  def list_labels
+    @label_controller.list_labels
+  end
   def add_music_album
     puts 'Album title: '
     name = gets.chomp.to_s
-    puts 'Publish data: '
+    puts 'Publish date: '
     date = gets.chomp.to_s
     puts 'Genre: '
     genre_name = gets.chomp.to_s
@@ -92,6 +95,7 @@ class App
   def save_data
     File.write('./data/albums.json', JSON.pretty_generate(@albums))
     File.write('./data/genre.json', JSON.pretty_generate(@genres))
+  end
   def list_games
     if @games.empty?
       puts 'No games in the library'
@@ -167,9 +171,11 @@ class App
     FileUtils.mkdir_p('data')
 
     @book_controller.save_to_file('books', @book_controller.books)
+    @label_controller.save_to_file('labels', @label_controller.labels)
 
     File.write('data/albums.json', JSON.pretty_generate(@albums))
     File.write('data/genre.json', JSON.pretty_generate(@genres))
+    @authors.concat( @author_controller.authors)
     File.write('data/authors.json', JSON.pretty_generate(@authors.map(&:hashify)))
     File.write('data/games.json', JSON.pretty_generate(@games.map(&:hashify)))
   end

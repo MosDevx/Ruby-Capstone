@@ -1,8 +1,10 @@
 require 'securerandom'
 require_relative 'book'
 require_relative 'item'
+require_relative 'json_helper'
 
 class Label
+  include JsonHelper
   attr_accessor :title, :color
 
   def initialize(title: '', color: '')
