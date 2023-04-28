@@ -16,6 +16,15 @@ class Game < Item
     author.items << self unless author.items.include?(self)
   end
 
+  def hashify
+    {
+      'name' => @name,
+      'multiplayer' => @multiplayer,
+      'last_played_at' => @last_played_at,
+      'publish_date' => @publish_date
+    }
+  end
+
   private
 
   def can_be_archived?

@@ -1,13 +1,19 @@
 require_relative './music_album'
 require_relative './genre'
 require 'json'
+require_relative './item'
+require_relative './game'
+require_relative './author'
+require_relative './data_handler'
 
 class App
-  attr_accessor :albums, :genres
+  attr_accessor :albums, :genres, :games, :authors
 
   def initialize
     @albums = []
     @genres = []
+    @authors = []
+    @games = []
   end
 
   def add_music_album
@@ -50,18 +56,95 @@ class App
     end
   end
 
+  def list_games
+    if @games.empty?
+      puts 'No games in the library'
+      puts
+    else
+      @games.each_with_index do |game, index|
+        puts "#{index}) #{game.name} - Mutliplayer: #{game.multiplayer}\n" \
+             "\tLast played at: #{game.last_played_at}\n" \
+             "\tPublish date: #{game.publish_date}"
+        puts
+      end
+    end
+  end
+
+  def list_authors
+    if @authors.empty?
+      puts 'No authors in the library'
+      puts
+    else
+      @authors.each_with_index do |author, index|
+        puts "#{index}) Name: #{author.first_name} #{author.last_name}\n" \
+             "Items: #{author.items.map(&:name).join(', ')}"
+        puts
+      end
+    end
+  end
+
+  def add_game
+    puts 'Enter the game name:'
+    name = gets.chomp
+    puts 'Last played at(YYYY-MM-DD):'
+    last_played_at = gets.chomp
+    multiplayer = multi_player?
+    puts 'Publish date(YYYY-MM-DD):'
+    publish_date = gets.chomp
+    puts 'Author(first name):'
+    first_name = gets.chomp
+    puts 'Author(last name):'
+    last_name = gets.chomp
+    game = Game.new(name: name, last_played_at: last_played_at, publish_date: publish_date,
+                    multiplayer: multiplayer)
+    @games << game
+    author = resolve_author(first_name, last_name)
+    unless author.nil?
+      author.add_item(game)
+      @authors << author unless @authors.include?(author)
+    end
+    puts 'Game added successfully'
+  end
+
+  def resolve_author(first_name, last_name)
+    return nil if first_name.empty? || last_name.empty?
+
+    author = @authors.find { |a| a.first_name == first_name && a.last_name == last_name }
+    author || Author.new(first_name: first_name, last_name: last_name)
+  end
+
+  def multi_player?
+    loop do
+      puts 'Multiplayer(T/F):'
+      choice1 = gets.chomp.upcase
+      if choice1 == 'T'
+        return true
+      elsif choice1 == 'F'
+        return false
+      else
+        puts 'Invalid option, please type T or F'
+      end
+    end
+  end
+
+  def save_data
+    FileUtils.mkdir_p('data')
+
+    File.write('data/albums.json', JSON.pretty_generate(@albums))
+    File.write('data/genre.json', JSON.pretty_generate(@genres))
+    File.write('data/authors.json', JSON.pretty_generate(@authors.map(&:hashify)))
+    File.write('data/games.json', JSON.pretty_generate(@games.map(&:hashify)))
+  end
+
   def read_file(file)
     read_file = File.read(file)
     JSON.parse(read_file)
   end
 
   def load_data
-    @albums = File.exist?('./data/albums.json') ? read_file('./data/albums.json') : []
-    @genres = File.exist?('./data/genre.json') ? read_file('./data/genre.json') : []
-  end
-
-  def save_data
-    File.write('./data/albums.json', JSON.pretty_generate(@albums))
-    File.write('./data/genre.json', JSON.pretty_generate(@genres))
+    @albums = File.exist?('data/albums.json') ? read_file('data/albums.json') : []
+    @genres = File.exist?('data/genre.json') ? read_file('data/genre.json') : []
+    @games = load_games
+    @authors = load_authors
   end
 end

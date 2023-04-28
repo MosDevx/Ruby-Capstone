@@ -25,4 +25,16 @@ class Author
       raise 'Item already has an author'
     end
   end
+
+  def hashify
+    {
+      'first_name' => @first_name,
+      'last_name' => @last_name,
+      'items' => @items.map do |item|
+        hashed_item = item.hashify
+        hashed_item['class'] = item.class.to_s
+        hashed_item
+      end
+    }
+  end
 end
