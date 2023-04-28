@@ -1,12 +1,14 @@
 require 'securerandom'
+require_relative 'json_helper'
 
 class Author
+  include JsonHelper
   attr_reader :id
   attr_accessor :first_name, :last_name, :items
 
   def initialize(first_name: '', last_name: '')
-    @first_name = first_name
-    @last_name = last_name
+    @first_name = first_name.capitalize
+    @last_name = last_name.capitalize
     generate_id
     @items = []
   end

@@ -19,7 +19,7 @@ class HandleData
 
     FileUtils.mkdir_p('data')
 
-    File.write(file_name)
+    # File.write(file_name)
     []
   end
 

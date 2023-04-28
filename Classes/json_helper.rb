@@ -64,13 +64,14 @@ module JsonHelper
   # Recieves a name of a class. Removes the last s
   # Returns an instance of that particular class.
   def item_factory(item_type)
-    class_name = item_type.delete('s')
+    # puts item_type
+    class_name = item_type.delete_suffix('s')
     case class_name
     when 'book'
       Book.new
     when 'game'
       Game.new
-    when 'music_album'
+    when 'musicalbum'
       MusicAlbum.new
     end
   end
