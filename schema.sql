@@ -18,7 +18,7 @@ CREATE TABLE authors (
     PRIMARY KEY (id),
 );
 
-CREATE TABLE music_album (
+CREATE TABLE music_albums (
     id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name VARCHAR(250),
     on_spotify BOOLEAN,
@@ -27,13 +27,32 @@ CREATE TABLE music_album (
     label_id INT,
     source_id INT,
     author_id INT,
-    FOREIGN KEY(genre_id) REFERENCES genre(id),
-    FOREIGN KEY(label_id) REFERENCES label(id),
-    FOREIGN KEY(source_id) REFERENCES source(id),
-    FOREIGN KEY(author_id) REFERENCES author(id)
+    FOREIGN KEY(genre_id) REFERENCES genres(id),
+    FOREIGN KEY(label_id) REFERENCES labels(id),
+    FOREIGN KEY(source_id) REFERENCES sources(id),
+    FOREIGN KEY(author_id) REFERENCES authors(id)
 );
 
-CREATE TABLE genre (
+CREATE TABLE genres (
     id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     name VARCHAR(250)
+);
+
+create table labels (
+    id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR(250)
+);
+
+create table Books (
+    id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    name VARCHAR(250),
+    publish_date DATE,
+    genre_id INT,
+    label_id INT,
+    source_id INT,
+    author_id INT,
+    FOREIGN KEY(genre_id) REFERENCES genres(id),
+    FOREIGN KEY(label_id) REFERENCES labels(id),
+    FOREIGN KEY(source_id) REFERENCES sources(id),
+    FOREIGN KEY(author_id) REFERENCES authors(id)
 );
