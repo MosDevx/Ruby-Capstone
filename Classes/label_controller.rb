@@ -17,15 +17,44 @@ class LabelController
     title = gets.chomp.to_s
     print 'Color: '
     color = fetch_valid_name('Color: ')
-    label = Label.new(title: title, color: color)
-    @labels.push(label)
-    puts 'New Label created!'
+
+    full_name = title + color
+
+    if new_label?(full_name)
+      label = Label.new(title: title, color: color)
+      @labels << label
+      puts
+      puts '+++ New Label created! +++'
+      puts
+      label
+    else
+      puts
+      puts 'Label already exists!'
+      existing_label = @labels.find {	|lbl| lbl.to_s == full_name.downcase }
+      puts 'Returning existing label...'
+      puts
+      existing_label
+    end
+
+    # label = Label.new(title: title, color: color)
+    # @labels.push(label)
+    # puts
+    # puts '+++ New Label created! +++'
+    # puts
+  end
+
+  def new_label?(full_name)
+    labels.each do |label|
+      return false if label.to_s == full_name.downcase
+    end
+    true
   end
 
   def list_labels
     if @labels.empty?
-      puts 'Please create a label'
+      puts '~~ No labels found ~~'
     else
+      puts '<<< List of Labels >>>'
       @labels.each do |label|
         puts "Title: #{label.title}, Color: #{label.color}"
       end

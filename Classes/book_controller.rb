@@ -1,11 +1,12 @@
 require_relative 'book'
-require_relative 'input_validator'
-require_relative 'handle_data'
-require_relative 'read_save_helper'
+# require_relative 'input_validator'
+# require_relative 'handle_data'
+# require_relative 'read_save_helper'
+require_relative 'controller'
 
 class BookController
-  include InputValidator
-  include ReadSaveHelper
+  include Controller
+
   attr_accessor :books
 
   def initialize
@@ -32,8 +33,8 @@ class BookController
 
   def list_books
     if @books.empty?
-      puts '~~ No books found! ~~'
-      puts 'Please create a book...(7)'
+      puts '~~ No books found ~~'
+      puts 'Please create a Book...(7)'
     else
       puts '<<< List of Books >>>'
       @books.each do |book|

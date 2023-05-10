@@ -9,7 +9,7 @@ module ItemFactory
   # Recieves a name of a class. Removes the last s
   # Returns an instance of that particular class.
   def item_factory(item_type)
-    class_name = item_type.delete('s')
+    class_name = item_type.delete_suffix('s')
     case class_name
     when 'genre'
       Genre.new
@@ -21,7 +21,7 @@ module ItemFactory
       Book.new
     when 'game'
       Game.new
-    when 'music'
+    when 'album'
       MusicAlbum.new
     end
   end

@@ -3,9 +3,9 @@ require './Classes/item'
 class Game < Item
   attr_accessor :name, :multiplayer, :last_played_at
 
-  def initialize(name:, last_played_at:, multiplayer:, author: nil, **args)
+  def initialize(name: '', last_played_at: '', multiplayer: '', author: nil, **args)
     super(**args)
-    @name = name
+    @name = name.capitalize
     @multiplayer = multiplayer
     @last_played_at = last_played_at
     @author = author
@@ -14,6 +14,10 @@ class Game < Item
   def author=(author)
     @author = author
     author.items << self unless author.items.include?(self)
+  end
+
+  def to_s
+    "#{@name} (#{@multiplayer ? 'Multiplayer' : 'Singleplayer'})"
   end
 
   def hashify
